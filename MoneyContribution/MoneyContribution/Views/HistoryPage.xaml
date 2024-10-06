@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MoneyContribution.Views.HistoryPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:MoneyContribution.ViewModels"
+    Title="History Page"
+    BackgroundColor="#1F4922"
+    Shell.NavBarIsVisible="False">
+    <ContentPage.BindingContext>
+        <vm:HistoryVM />
+    </ContentPage.BindingContext>
+    <VerticalStackLayout Padding="10" Spacing="20">
+        <StackLayout
+            Padding="20"
+            HeightRequest="80"
+            HorizontalOptions="Fill"
+            Orientation="Horizontal">
+            <Frame
+                Padding="0"
+                BackgroundColor="Transparent"
+                BorderColor="Transparent">
+                <!--  Inner Grid for Icon  -->
+                <Grid>
+                    <Image
+                        Aspect="AspectFill"
+                        HeightRequest="30"
+                        HorizontalOptions="Center"
+                        Source="back_white_icon.png"
+                        VerticalOptions="Center"
+                        WidthRequest="30">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NavigateBackCommand}" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+
+            </Frame>
+
+            <Label
+                FontFamily="InterRegular"
+                FontSize="24"
+                HorizontalOptions="CenterAndExpand"
+                Text="Contributions History"
+                TextColor="White"
+                VerticalOptions="CenterAndExpand" />
+
+        </StackLayout>
+
+        <ScrollView HeightRequest="700" Orientation="Vertical">
+            <CollectionView ItemsSource="{Binding UserContributions}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame
+                            Margin="0,10,0,0"
+                            Padding="10"
+                            BackgroundColor="#F4F4F4"
+                            CornerRadius="10">
+                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                <Image
+                                    HeightRequest="40"
+                                    Source="contributedamount_icon.png"
+                                    VerticalOptions="Center"
+                                    WidthRequest="40" />
+                                <StackLayout Padding="10,0,0,0" Spacing="0">
+                                    <Label
+                                        FontFamily="InterRegular"
+                                        FontSize="14"
+                                        Text="{Binding ContributionDate, StringFormat='{0}'}"
+                                        TextColor="#849199" />
+                                    <Label
+                                        FontFamily="InterRegular"
+                                        FontSize="12"
+                                        HorizontalOptions="End"
+                                        Text="{Binding Timestamp}"
+                                        TextColor="#849199" />
+                                </StackLayout>
+                                <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+                                    <Label
+                                        FontFamily="InterSemibold"
+                                        FontSize="18"
+                                        HorizontalOptions="End"
+                                        Text="{Binding Amount, StringFormat='+ Rs.{0:N0}'}"
+                                        TextColor="Green" />
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+
+
+
+    </VerticalStackLayout>
+</ContentPage>

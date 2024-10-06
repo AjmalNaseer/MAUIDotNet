@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MoneyContribution.Views.RegisterPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:handlers="clr-namespace:MoneyContribution.Handlers"
+    xmlns:vm="clr-namespace:MoneyContribution.ViewModels"
+    Title="RegisterPage"
+    x:DataType="vm:RegisterationVM"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False">
+    <ContentPage.Content>
+        <Grid
+            BackgroundColor="#FFFFFF"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0" HorizontalOptions="Center">
+                <Image
+                    Margin="0,30"
+                    Aspect="AspectFit"
+                    HeightRequest="100"
+                    Source="app_logo.svg"
+                    WidthRequest="80" />
+            </StackLayout>
+
+            <Frame
+                Grid.Row="1"
+                Margin="0,0,0,-40"
+                Padding="0"
+                BackgroundColor="#1F4922"
+                BorderColor="#1C375C"
+                CornerRadius="40"
+                HasShadow="True"
+                HeightRequest="700">
+                <StackLayout Padding="20" Orientation="Vertical">
+                    <Grid
+                        Padding="20,20,20,0"
+                        HorizontalOptions="FillAndExpand"
+                        RowSpacing="20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+
+                        </Grid.RowDefinitions>
+                        <Label
+                            Grid.Row="0"
+                            FontFamily="InterBold"
+                            FontSize="24"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="Registration"
+                            TextColor="#FFFFFF" />
+                        <handlers:BorderlessEntry
+                            Grid.Row="1"
+                            BackgroundColor="Transparent"
+                            FontFamily="InterRegular"
+                            HorizontalOptions="FillAndExpand"
+                            Placeholder="Email"
+                            PlaceholderColor="White"
+                            Text="{Binding User.Email}"
+                            TextColor="White"
+                            VerticalOptions="FillAndExpand" />
+                        <handlers:BorderlessEntry
+                            Grid.Row="2"
+                            BackgroundColor="Transparent"
+                            FontFamily="InterRegular"
+                            HorizontalOptions="FillAndExpand"
+                            Placeholder="Name"
+                            PlaceholderColor="White"
+                            Text="{Binding User.Username}"
+                            TextColor="White"
+                            VerticalOptions="FillAndExpand" />
+                        <handlers:BorderlessEntry
+                            Grid.Row="3"
+                            BackgroundColor="Transparent"
+                            FontFamily="InterRegular"
+                            HorizontalOptions="FillAndExpand"
+                            IsPassword="True"
+                            Placeholder="Password"
+                            PlaceholderColor="White"
+                            Text="{Binding User.Password}"
+                            TextColor="White"
+                            VerticalOptions="FillAndExpand" />
+
+                    </Grid>
+                    <StackLayout
+                        Padding="20"
+                        Orientation="Vertical"
+                        Spacing="20">
+                        <Button
+                            BackgroundColor="#FFFFFF"
+                            Command="{Binding RegisterCommand}"
+                            CornerRadius="20"
+                            FontFamily="InterSemibold"
+                            Text="Register"
+                            TextColor="#1F4922" />
+                    </StackLayout>
+                    <StackLayout
+                        Padding="0,60,0,0"
+                        HorizontalOptions="CenterAndExpand"
+                        Orientation="Horizontal">
+                        <Label
+                            FontFamily="InterRegular"
+                            Text="Have an Account !"
+                            TextColor="#B3B0B0"
+                            VerticalOptions="CenterAndExpand" />
+                        <Button
+                            Padding="4"
+                            BackgroundColor="Transparent"
+                            Command="{Binding NavigateLoginCommand}"
+                            CornerRadius="20"
+                            FontFamily="InterSemibold"
+                            FontSize="18"
+                            Text="Login"
+                            TextColor="#FFFFFF" />
+                    </StackLayout>
+
+                </StackLayout>
+
+            </Frame>
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MoneyContribution.Views.SettingsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="SettingsPage">
+    <VerticalStackLayout>
+        <StackLayout
+            Padding="14,14,14,0"
+            BackgroundColor="#fb806e"
+            HeightRequest="80"
+            Orientation="Horizontal">
+            <Frame
+                Padding="0"
+                BackgroundColor="Transparent"
+                BorderColor="Transparent">
+                <!--  Inner Grid for Icon  -->
+                <Grid>
+                    <!--  Image Icon  -->
+                    <Image
+                        Aspect="AspectFill"
+                        HeightRequest="40"
+                        HorizontalOptions="Center"
+                        Source="back_white_icon.png"
+                        VerticalOptions="Center"
+                        WidthRequest="40">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NavigateBackCommand}" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+
+            </Frame>
+
+            <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                <Label
+                    FontFamily="InterBold"
+                    FontSize="Large"
+                    HorizontalOptions="Center"
+                    Text="Settings"
+                    TextColor="White" />
+            </StackLayout>
+
+        </StackLayout>
+    </VerticalStackLayout>
+</ContentPage>

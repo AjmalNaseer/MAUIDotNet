@@ -1,0 +1,157 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
+
+		<!-- Note for MacCatalyst:
+		The default runtime is maccatalyst-x64, except in Release config, in which case the default is maccatalyst-x64;maccatalyst-arm64.
+		When specifying both architectures, use the plural <RuntimeIdentifiers> instead of the singular <RuntimeIdentifier>.
+		The Mac App Store will NOT accept apps with ONLY maccatalyst-arm64 indicated;
+		either BOTH runtimes must be indicated or ONLY macatalyst-x64. -->
+		<!-- For example: <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
+
+		<OutputType>Exe</OutputType>
+		<RootNamespace>RaceCar</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<!-- Display name -->
+		<ApplicationTitle>RaceCar</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.racecar</ApplicationId>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+		<DefaultLanguage>en-US</DefaultLanguage>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#EC826E" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splashscreen.svg" Resize="false" Color="#EC826E" />
+		
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Remove="Resources\Images\BadgeLogo.scale-100.png" />
+	  <MauiImage Remove="Resources\Images\BadgeLogo.scale-125.png" />
+	  <MauiImage Remove="Resources\Images\BadgeLogo.scale-150.png" />
+	  <MauiImage Remove="Resources\Images\BadgeLogo.scale-200.png" />
+	  <MauiImage Remove="Resources\Images\BadgeLogo.scale-400.png" />
+	  <MauiImage Remove="Resources\Images\dotnet_bot.png" />
+	  <MauiImage Remove="Resources\Images\SplashScreen.scale-100.png" />
+	  <MauiImage Remove="Resources\Images\SplashScreen.scale-125.png" />
+	  <MauiImage Remove="Resources\Images\SplashScreen.scale-150.png" />
+	  <MauiImage Remove="Resources\Images\SplashScreen.scale-200.png" />
+	  <MauiImage Remove="Resources\Images\SplashScreen.scale-400.png" />
+	  <MauiImage Remove="Resources\Images\Square150x150Logo.scale-100.png" />
+	  <MauiImage Remove="Resources\Images\Square150x150Logo.scale-125.png" />
+	  <MauiImage Remove="Resources\Images\Square150x150Logo.scale-150.png" />
+	  <MauiImage Remove="Resources\Images\Square150x150Logo.scale-200.png" />
+	  <MauiImage Remove="Resources\Images\Square150x150Logo.scale-400.png" />
+	  <MauiImage Remove="Resources\Images\Square310x310Logo.scale-100.png" />
+	  <MauiImage Remove="Resources\Images\Square310x310Logo.scale-125.png" />
+	  <MauiImage Remove="Resources\Images\Square310x310Logo.scale-150.png" />
+	  <MauiImage Remove="Resources\Images\Square310x310Logo.scale-200.png" />
+	  <MauiImage Remove="Resources\Images\Square310x310Logo.scale-400.png" />
+	  <MauiImage Remove="Resources\Images\Square44x44Logo.scale-100.png" />
+	  <MauiImage Remove="Resources\Images\Square44x44Logo.scale-125.png" />
+	  <MauiImage Remove="Resources\Images\Square44x44Logo.scale-150.png" />
+	  <MauiImage Remove="Resources\Images\Square44x44Logo.scale-200.png" />
+	  <MauiImage Remove="Resources\Images\Square44x44Logo.scale-400.png" />
+	  <MauiImage Remove="Resources\Images\Square71x71Logo.scale-100.png" />
+	  <MauiImage Remove="Resources\Images\Square71x71Logo.scale-125.png" />
+	  <MauiImage Remove="Resources\Images\Square71x71Logo.scale-150.png" />
+	  <MauiImage Remove="Resources\Images\Square71x71Logo.scale-200.png" />
+	  <MauiImage Remove="Resources\Images\Square71x71Logo.scale-400.png" />
+	  <MauiImage Remove="Resources\Images\StoreLogo.scale-100.png" />
+	  <MauiImage Remove="Resources\Images\StoreLogo.scale-125.png" />
+	  <MauiImage Remove="Resources\Images\StoreLogo.scale-150.png" />
+	  <MauiImage Remove="Resources\Images\StoreLogo.scale-200.png" />
+	  <MauiImage Remove="Resources\Images\StoreLogo.scale-400.png" />
+	  <MauiImage Remove="Resources\Images\Wide310x150Logo.scale-100.png" />
+	  <MauiImage Remove="Resources\Images\Wide310x150Logo.scale-125.png" />
+	  <MauiImage Remove="Resources\Images\Wide310x150Logo.scale-150.png" />
+	  <MauiImage Remove="Resources\Images\Wide310x150Logo.scale-200.png" />
+	  <MauiImage Remove="Resources\Images\Wide310x150Logo.scale-400.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Images\BadgeLogo.scale-125.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Resources\Images\BadgeLogo.scale-100.png" />
+	  <Content Include="Resources\Images\BadgeLogo.scale-125.png" />
+	  <Content Include="Resources\Images\BadgeLogo.scale-150.png" />
+	  <Content Include="Resources\Images\BadgeLogo.scale-200.png" />
+	  <Content Include="Resources\Images\BadgeLogo.scale-400.png" />
+	  <Content Include="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
+	  <Content Include="Resources\Images\SplashScreen.scale-100.png" />
+	  <Content Include="Resources\Images\SplashScreen.scale-125.png" />
+	  <Content Include="Resources\Images\SplashScreen.scale-150.png" />
+	  <Content Include="Resources\Images\SplashScreen.scale-200.png" />
+	  <Content Include="Resources\Images\SplashScreen.scale-400.png" />
+	  <Content Include="Resources\Images\Square150x150Logo.scale-100.png" />
+	  <Content Include="Resources\Images\Square150x150Logo.scale-125.png" />
+	  <Content Include="Resources\Images\Square150x150Logo.scale-150.png" />
+	  <Content Include="Resources\Images\Square150x150Logo.scale-200.png" />
+	  <Content Include="Resources\Images\Square150x150Logo.scale-400.png" />
+	  <Content Include="Resources\Images\Square310x310Logo.scale-100.png" />
+	  <Content Include="Resources\Images\Square310x310Logo.scale-125.png" />
+	  <Content Include="Resources\Images\Square310x310Logo.scale-150.png" />
+	  <Content Include="Resources\Images\Square310x310Logo.scale-200.png" />
+	  <Content Include="Resources\Images\Square310x310Logo.scale-400.png" />
+	  <Content Include="Resources\Images\Square44x44Logo.scale-100.png" />
+	  <Content Include="Resources\Images\Square44x44Logo.scale-125.png" />
+	  <Content Include="Resources\Images\Square44x44Logo.scale-150.png" />
+	  <Content Include="Resources\Images\Square44x44Logo.scale-200.png" />
+	  <Content Include="Resources\Images\Square44x44Logo.scale-400.png" />
+	  <Content Include="Resources\Images\Square71x71Logo.scale-100.png" />
+	  <Content Include="Resources\Images\Square71x71Logo.scale-125.png" />
+	  <Content Include="Resources\Images\Square71x71Logo.scale-150.png" />
+	  <Content Include="Resources\Images\Square71x71Logo.scale-200.png" />
+	  <Content Include="Resources\Images\Square71x71Logo.scale-400.png" />
+	  <Content Include="Resources\Images\StoreLogo.scale-100.png" />
+	  <Content Include="Resources\Images\StoreLogo.scale-125.png" />
+	  <Content Include="Resources\Images\StoreLogo.scale-150.png" />
+	  <Content Include="Resources\Images\StoreLogo.scale-200.png" />
+	  <Content Include="Resources\Images\StoreLogo.scale-400.png" />
+	  <Content Include="Resources\Images\Wide310x150Logo.scale-100.png" />
+	  <Content Include="Resources\Images\Wide310x150Logo.scale-125.png" />
+	  <Content Include="Resources\Images\Wide310x150Logo.scale-150.png" />
+	  <Content Include="Resources\Images\Wide310x150Logo.scale-200.png" />
+	  <Content Include="Resources\Images\Wide310x150Logo.scale-400.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+	</ItemGroup>
+
+</Project>

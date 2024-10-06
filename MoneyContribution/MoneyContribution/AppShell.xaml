@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MoneyContribution.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MoneyContribution.Views"
+    Title="MoneyContribution"
+    Shell.FlyoutBehavior="Flyout">
+    <ShellContent
+        Title="Login"
+        ContentTemplate="{DataTemplate local:LoginPage}"
+        FlyoutItemIsVisible="False"
+        Route="LoginPage"
+        Shell.FlyoutBehavior="Disabled" />
+    <ShellContent
+        Title="Register"
+        ContentTemplate="{DataTemplate local:RegisterPage}"
+        FlyoutItemIsVisible="False"
+        Route="RegisterPage"
+        Shell.FlyoutBehavior="Disabled" />
+    <ShellContent
+        Title="Dashboard"
+        ContentTemplate="{DataTemplate local:DashboardPage}"
+        Route="DashboardPage" />
+    <ShellContent
+        Title="Contribute"
+        ContentTemplate="{DataTemplate local:ContributePage}"
+        Route="ContributePage" />
+    <ShellContent
+        Title="History"
+        ContentTemplate="{DataTemplate local:HistoryPage}"
+        Route="HistoryPage" />
+    <ShellContent
+        ContentTemplate="{DataTemplate local:LoadingPage}"
+        FlyoutItemIsVisible="False"
+        Route="LoadingPage"
+        Shell.FlyoutBehavior="Disabled" />
+    <Shell.FlyoutFooter>
+        <StackLayout Padding="20" Spacing="20">
+            <Button Command="{Binding LogoutCommand}" Text="Logout" />
+            <StackLayout HorizontalOptions="Center">
+                <Label
+                    FontFamily="InterSemibold"
+                    FontSize="12"
+                    HorizontalOptions="Center"
+                    Text="Developed for &#127477;&#127472; with 💓 " />
+                <Label
+                    FontSize="10"
+                    HorizontalOptions="Center"
+                    Text="App version: 1.0" />
+            </StackLayout>
+        </StackLayout>
+
+    </Shell.FlyoutFooter>
+</Shell>

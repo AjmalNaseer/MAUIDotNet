@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MoneyContribution.Views.DashboardPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:MoneyContribution.ViewModels"
+    Title="DashboardPage"
+    BackgroundColor="#1F4922"
+    Shell.NavBarIsVisible="True">
+    <ContentPage.BindingContext>
+        <vm:DashboardVM />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid ColumnDefinitions="*,*" RowDefinitions="2*,1*,1*">
+                <Frame
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    Margin="20"
+                    Padding="20"
+                    BackgroundColor="#ADBAAE"
+                    CornerRadius="10">
+                    <StackLayout>
+                        <Label
+                            FontFamily="InterRegular"
+                            FontSize="18"
+                            Text="Total Contributions"
+                            TextColor="#FFFFFF" />
+                        <!--  Bind to CurrentBalance Property in ViewModel  -->
+                        <Label
+                            FontFamily="InterBold"
+                            FontSize="36"
+                            Text="{Binding CollectedMoney, StringFormat='Rs. {0:N0}'}"
+                            TextColor="White"
+                            VerticalOptions="EndAndExpand" />
+
+                    </StackLayout>
+                </Frame>
+
+                <Frame
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Margin="20"
+                    BackgroundColor="#2EB5E6"
+                    CornerRadius="10">
+                    <StackLayout Spacing="10">
+                        <Image
+                            HeightRequest="40"
+                            Source="contributedamount_icon.png"
+                            WidthRequest="40" />
+                        <Label
+                            FontFamily="InterRegular"
+                            FontSize="14"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            Text="Your Contributions"
+                            TextColor="White"
+                            VerticalTextAlignment="Center" />
+                        <Label
+                            FontFamily="InterBold"
+                            FontSize="25"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding UserContributedMoney, StringFormat='Rs. {0:N0}'}"
+                            TextColor="White"
+                            VerticalOptions="EndAndExpand" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NavigateHistoryCommand}" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </Frame>
+
+                <!--  Contribute Button  -->
+                <Frame
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="20"
+                    BackgroundColor="#DE8231"
+                    CornerRadius="10">
+                    <StackLayout Spacing="20">
+                        <Image
+                            HeightRequest="20"
+                            HorizontalOptions="End"
+                            Source="send_icon.png"
+                            WidthRequest="20" />
+                        <Label
+                            FontFamily="InterRegular"
+                            FontSize="18"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            Text="Tap To Contribute"
+                            TextColor="White"
+                            VerticalTextAlignment="Center" />
+                    </StackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigateContributeCommand}" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+                <!--  Transaction History Section  -->
+                <StackLayout
+                    Grid.Row="2"
+                    Grid.ColumnSpan="2"
+                    Padding="20"
+                    Spacing="10">
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                            FontFamily="InterSemibold"
+                            FontSize="16"
+                            Text="Transactions"
+                            TextColor="#FFFFFF" />
+                        <Label
+                            FontFamily="InterSemibold"
+                            FontSize="16"
+                            HorizontalOptions="EndAndExpand"
+                            Text="See all"
+                            TextColor="#FE7C66">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NavigateHistoryCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                    <ScrollView HeightRequest="300">
+                        <CollectionView ItemsSource="{Binding UserContributions}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame
+                                        Margin="0,10,0,0"
+                                        Padding="10"
+                                        BackgroundColor="#F4F4F4"
+                                        CornerRadius="10">
+                                        <StackLayout Orientation="Horizontal" Spacing="0">
+                                            <Image
+                                                HeightRequest="40"
+                                                Source="contributedamount_icon.png"
+                                                VerticalOptions="Center"
+                                                WidthRequest="40" />
+                                            <StackLayout Padding="10,0,0,0" Spacing="0">
+                                                <Label
+                                                    FontFamily="InterSemibold"
+                                                    FontSize="16"
+                                                    Text="{Binding UserName}" />
+                                                <Label
+                                                    FontFamily="InterRegular"
+                                                    FontSize="14"
+                                                    Text="{Binding ContributionDate, StringFormat='Date: {0}'}"
+                                                    TextColor="#849199" />
+                                            </StackLayout>
+                                            <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+                                                <Label
+                                                    FontFamily="InterSemibold"
+                                                    FontSize="18"
+                                                    HorizontalOptions="End"
+                                                    Text="{Binding Amount, StringFormat='+ Rs.{0:N0}'}"
+                                                    TextColor="Green" />
+                                                <Label
+                                                    FontFamily="InterRegular"
+                                                    FontSize="12"
+                                                    HorizontalOptions="End"
+                                                    Text="{Binding Timestamp}"
+                                                    TextColor="#849199" />
+
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </ScrollView>
+
+                </StackLayout>
+
+            </Grid>
+            <!--
+            <StackLayout
+                Padding="20"
+                Orientation="Vertical"
+                Spacing="20">
+                <Button
+                    BackgroundColor="#FFFFFF"
+                    Command="{Binding LogoutCommand}"
+                    CornerRadius="20"
+                    FontFamily="InterSemibold"
+                    Text="Logout"
+                    TextColor="#1F4922" />
+            </StackLayout>-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
