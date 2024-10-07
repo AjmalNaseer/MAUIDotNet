@@ -4,21 +4,19 @@ namespace MoneyContribution.Views;
 
 public partial class DashboardPage : ContentPage
 {
-    private DashboardVM _viewModel;
-
-    public DashboardPage()
+    public DashboardPage(DashboardVM viewmodel)
     {
         InitializeComponent();
-        _viewModel = new DashboardVM();
-        BindingContext = _viewModel; 
-    }
+        BindingContext = viewmodel;
 
-    protected override void OnAppearing()
+    }
+    protected override async void OnAppearing()
     {
         base.OnAppearing();
-        if (_viewModel != null)
+
+        if (BindingContext is DashboardVM viewModel)
         {
-            _viewModel.RefreshData();
+            await viewModel.InitializeAsync();
         }
     }
 }

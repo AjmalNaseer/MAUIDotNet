@@ -4,20 +4,18 @@ namespace MoneyContribution.Views;
 
 public partial class HistoryPage : ContentPage
 {
-    private HistoryVM _viewModel;
-
-    public HistoryPage()
+    public HistoryPage(HistoryVM viewmodel)
 	{
 		InitializeComponent();
-        _viewModel = new HistoryVM();
-        BindingContext = _viewModel;
+        BindingContext = viewmodel;
     }
-    protected override void OnAppearing()
+    protected override async void OnAppearing()
     {
         base.OnAppearing();
-        if (_viewModel != null)
+
+        if (BindingContext is HistoryVM viewModel)
         {
-            _viewModel.RefreshData();
+            await viewModel.InitializeAsync();
         }
     }
 }

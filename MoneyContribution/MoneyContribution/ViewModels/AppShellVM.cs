@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using Firebase.Auth;
+using MoneyContribution.Services;
 using MoneyContribution.Views;
 using MvvmHelpers;
 using System;
@@ -41,7 +42,7 @@ namespace MoneyContribution.ViewModels
             bool result = await Shell.Current.DisplayAlert("Logout", "Are you Sure you want to Logout?", "Yes", "No");
             if (result)
             {
-                _firebaseAuthClient.SignOut();
+                await FirebaseAuthServices.SignOutAsync();
                 
                 await Shell.Current.GoToAsync("//LoginPage");
 

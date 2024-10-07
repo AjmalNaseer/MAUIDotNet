@@ -18,38 +18,27 @@ namespace MoneyContribution.ViewModels
     public partial class HistoryVM : ObservableObject
     {
         private readonly FirebaseClient _firebaseClient;
-        private readonly FirebaseAuthClient _authClient;
+        private FirebaseAuthClient _authClient;
 
-        private string _currentUserName = "Anonymous";
+        private string _currentUserName;
 
         [ObservableProperty]
         private ObservableCollection<Contributions> _userContributions = new();
         public HistoryVM()
         {
             _firebaseClient = new FirebaseClient(ContribAPIs.FirebaseUrl);
-
-            _authClient = new FirebaseAuthClient(new FirebaseAuthConfig
-            {
-                ApiKey = ContribAPIs.ApiKey,
-                AuthDomain = ContribAPIs.AuthDomain,
-                Providers = new FirebaseAuthProvider[]
-                {
-                    new GoogleProvider(),
-                    new EmailProvider()
-                }
-            });
-            LoadUserContributions();
         }
-        public async void RefreshData()
+        public async Task InitializeAsync()
         {
+            _authClient = FirebaseAuthServices.AuthClient;
+            _currentUserName = await FetchUserDetails();
             LoadUserContributions();
         }
+        
         private async void LoadUserContributions()
         {
             try
             {
-                _currentUserName = await FetchUserDetails();
-
                 var contributions = await _firebaseClient
                     .Child("contributions")
                     .OrderBy("Timestamp") // Order by Timestamp in Firebase

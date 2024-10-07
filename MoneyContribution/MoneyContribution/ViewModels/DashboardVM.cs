@@ -17,7 +17,7 @@ namespace MoneyContribution.ViewModels
     public partial class DashboardVM : ObservableObject
     {
         private readonly FirebaseClient _firebaseClient;
-        private readonly FirebaseAuthClient _authClient;
+        private  FirebaseAuthClient _authClient;
 
         [ObservableProperty]
         private ObservableCollection<Contributions> _contributions = new();
@@ -35,25 +35,15 @@ namespace MoneyContribution.ViewModels
         public DashboardVM()
         {
             _firebaseClient = new FirebaseClient(ContribAPIs.FirebaseUrl);
-
-            _authClient = new FirebaseAuthClient(new FirebaseAuthConfig
-            {
-                ApiKey = ContribAPIs.ApiKey,
-                AuthDomain = ContribAPIs.AuthDomain,
-                Providers = new FirebaseAuthProvider[]
-                {
-                    new GoogleProvider(),
-                    new EmailProvider()
-                }
-            });
-            LoadUserContributions();
-            LoadCollectedMoney();
         }
-        public async void RefreshData()
+        public async Task InitializeAsync()
         {
-            LoadCollectedMoney();
+            _authClient = FirebaseAuthServices.AuthClient;
+            _currentUserName = await FetchUserDetails();
             LoadUserContributions();
+            LoadCollectedMoney();
         }
+        
         private async void LoadCollectedMoney()
         {
             try
@@ -81,7 +71,6 @@ namespace MoneyContribution.ViewModels
         {
             try
             {
-                _currentUserName = await FetchUserDetails();
                 var contributions = await _firebaseClient
                     .Child("contributions")
                     .OrderBy("Timestamp")
@@ -125,7 +114,7 @@ namespace MoneyContribution.ViewModels
         {
             try
             {
-                var user = _authClient.User;
+                var user = FirebaseAuthServices.AuthClient.User;
 
                 if (user != null)
                 {
@@ -142,7 +131,6 @@ namespace MoneyContribution.ViewModels
                 return "Anonymous";  
             }
         }
-
 
         [RelayCommand]
         private async Task NavigateContribute()

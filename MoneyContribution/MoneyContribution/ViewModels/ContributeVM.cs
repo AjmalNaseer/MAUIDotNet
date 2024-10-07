@@ -15,37 +15,25 @@ namespace MoneyContribution.ViewModels
     public partial class ContributeVM : ObservableObject
     {
         private readonly FirebaseClient _firebaseClient;
-        private readonly FirebaseAuthClient _authClient;
+        private FirebaseAuthClient _authClient;
 
         [ObservableProperty]
         private string _contributionAmount;
 
         [ObservableProperty]
-        private double _collectedMoney;
-
-        [ObservableProperty]
-        private string _username;
-
-        [ObservableProperty]
         private ObservableCollection<Contributions> _userContributions = new();
 
-        private string _currentUserName = "Anonymous";
+        private string _currentUserName;
 
-        // Constructor initializes Firebase clients
         public ContributeVM()
         {
             _firebaseClient = new FirebaseClient(ContribAPIs.FirebaseUrl);
+        }
 
-            _authClient = new FirebaseAuthClient(new FirebaseAuthConfig
-            {
-                ApiKey = ContribAPIs.ApiKey,
-                AuthDomain = ContribAPIs.AuthDomain,
-                Providers = new FirebaseAuthProvider[]
-                {
-                    new GoogleProvider(),
-                    new EmailProvider()
-                }
-            });
+        public async Task InitializeAsync()
+        {
+            _authClient = FirebaseAuthServices.AuthClient;
+            _currentUserName = await FetchUserDetails();
         }
 
         [RelayCommand]
@@ -53,12 +41,10 @@ namespace MoneyContribution.ViewModels
         {
             if (string.IsNullOrEmpty(ContributionAmount) || ContributionAmount == "0")
             {
-                // If ContributionAmount is empty or "0", replace it with the pressed number
                 ContributionAmount = number;
             }
             else
             {
-                // Otherwise, append the pressed number
                 ContributionAmount += number;
             }
         }
@@ -76,18 +62,14 @@ namespace MoneyContribution.ViewModels
         {
             if (double.TryParse(ContributionAmount, out double contribution))
             {
-                // Check if the contribution amount is zero or negative
                 if (contribution <= 0)
                 {
-                    // Show an alert if the amount is zero or less
                     await App.Current.MainPage.DisplayAlert("Invalid Amount", "Please enter an amount greater than zero.", "OK");
-                    return; // Exit the method
+                    return; 
                 }
 
                 try
                 {
-                    _currentUserName = await GetCurrentUserNameAsync();
-
                     var contributionData = new Contributions
                     {
                         Amount = contribution,
@@ -100,7 +82,6 @@ namespace MoneyContribution.ViewModels
                         .Child("contributions")
                         .PostAsync(contributionData);
 
-                    CollectedMoney += contribution;
                     ContributionAmount = string.Empty;
                     UserContributions.Add(contributionData);
 
@@ -118,19 +99,14 @@ namespace MoneyContribution.ViewModels
             }
         }
 
-
-
-
-        // Fetch the current user's display name or email from Firebase Authentication
-        private async Task<string> GetCurrentUserNameAsync()
+        private async Task<string> FetchUserDetails()
         {
             try
             {
-                var user = _authClient.User;
+                var user = FirebaseAuthServices.AuthClient.User;
 
                 if (user != null)
                 {
-                    // Return the display name if available, otherwise use the email
                     return !string.IsNullOrEmpty(user.Info.DisplayName) ? user.Info.DisplayName : user.Info.Email;
                 }
                 else
@@ -140,7 +116,6 @@ namespace MoneyContribution.ViewModels
             }
             catch (Exception ex)
             {
-                // Log the error and return a default value
                 Console.WriteLine($"Error fetching user info: {ex.Message}");
                 return "Anonymous";
             }

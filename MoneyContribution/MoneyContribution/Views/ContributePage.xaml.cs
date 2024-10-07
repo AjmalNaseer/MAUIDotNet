@@ -9,4 +9,14 @@ public partial class ContributePage : ContentPage
         InitializeComponent();
         BindingContext = viewmodel;
     }
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        if (BindingContext is ContributeVM viewModel)
+        {
+            await viewModel.InitializeAsync();
+        }
+    }
+
 }
