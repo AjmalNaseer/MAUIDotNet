@@ -10,6 +10,9 @@ public partial class LoginVM : ObservableObject
     private readonly FirebaseAuthClient _authClient;
 
     [ObservableProperty]
+    private bool _isBusy;
+
+    [ObservableProperty]
     private UserModel _user = new();
 
     public LoginVM()
@@ -20,6 +23,7 @@ public partial class LoginVM : ObservableObject
     [RelayCommand]
     private async Task Login()
     {
+       
         if (string.IsNullOrWhiteSpace(User.Email) || string.IsNullOrWhiteSpace(User.Password))
         {
             await App.Current.MainPage.DisplayAlert("Error", "Please enter both email and password.", "OK");
@@ -34,11 +38,12 @@ public partial class LoginVM : ObservableObject
 
         try
         {
+            IsBusy = true;
             var result = await FirebaseAuthServices.SignInUserAsync(User.Email, User.Password);
-
+            await FetchUserDetails();
+            IsBusy = false;
             if (!string.IsNullOrWhiteSpace(result?.User?.Info?.Email))
             {
-                await FetchUserDetails();
                 AppShell.Current.FlyoutHeader = new FlyoutHeaderControl(_authClient);
                 await NavigateDashboard();
             }

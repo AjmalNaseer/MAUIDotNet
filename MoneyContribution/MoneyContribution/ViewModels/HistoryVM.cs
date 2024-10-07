@@ -19,6 +19,9 @@ namespace MoneyContribution.ViewModels
     {
         private readonly FirebaseClient _firebaseClient;
         private FirebaseAuthClient _authClient;
+        
+        [ObservableProperty]
+        private bool _isBusy;
 
         private string _currentUserName;
 
@@ -39,6 +42,7 @@ namespace MoneyContribution.ViewModels
         {
             try
             {
+                IsBusy = true;
                 var contributions = await _firebaseClient
                     .Child("contributions")
                     .OrderBy("Timestamp") // Order by Timestamp in Firebase
@@ -65,6 +69,7 @@ namespace MoneyContribution.ViewModels
                 {
                     UserContributions.Add(contribution);
                 }
+                IsBusy = false;
             }
             catch (Exception ex)
             {

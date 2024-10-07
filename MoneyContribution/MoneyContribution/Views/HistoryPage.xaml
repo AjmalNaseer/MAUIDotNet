@@ -10,7 +10,7 @@
     <ContentPage.BindingContext>
         <vm:HistoryVM />
     </ContentPage.BindingContext>
-    <VerticalStackLayout Padding="10" Spacing="20">
+    <StackLayout Padding="10" Spacing="20">
         <StackLayout
             Padding="20"
             HeightRequest="80"
@@ -44,7 +44,6 @@
                 Text="Contributions History"
                 TextColor="White"
                 VerticalOptions="CenterAndExpand" />
-
         </StackLayout>
 
         <ScrollView HeightRequest="700" Orientation="Vertical">
@@ -90,7 +89,19 @@
             </CollectionView>
         </ScrollView>
 
+        <Grid
+            BackgroundColor="#000000AA"
+            HorizontalOptions="FillAndExpand"
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="FillAndExpand">
+            <ActivityIndicator
+                HeightRequest="100"
+                HorizontalOptions="Center"
+                IsRunning="{Binding IsBusy}"
+                VerticalOptions="Center"
+                WidthRequest="100"
+                Color="Orange" />
+        </Grid>
 
-
-    </VerticalStackLayout>
+    </StackLayout>
 </ContentPage>

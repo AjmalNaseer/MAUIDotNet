@@ -170,19 +170,19 @@
                 </StackLayout>
 
             </Grid>
-            <!--
-            <StackLayout
-                Padding="20"
-                Orientation="Vertical"
-                Spacing="20">
-                <Button
-                    BackgroundColor="#FFFFFF"
-                    Command="{Binding LogoutCommand}"
-                    CornerRadius="20"
-                    FontFamily="InterSemibold"
-                    Text="Logout"
-                    TextColor="#1F4922" />
-            </StackLayout>-->
+            <Grid
+                BackgroundColor="#000000AA"
+                HorizontalOptions="FillAndExpand"
+                IsVisible="{Binding IsBusy}"
+                VerticalOptions="FillAndExpand">
+                <ActivityIndicator
+                    HeightRequest="100"
+                    HorizontalOptions="Center"
+                    IsRunning="{Binding IsBusy}"
+                    VerticalOptions="Center"
+                    WidthRequest="100"
+                    Color="Orange" />
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

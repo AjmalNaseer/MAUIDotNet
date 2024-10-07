@@ -42,15 +42,12 @@ namespace MoneyContribution.Services
             var result = await _authClient.SignInWithEmailAndPasswordAsync(email, password);
             return result;
         }
-
-
-        // Method to log out the current user
         public static async Task SignOutAsync()
         {
             if (_authClient != null)
             {
                 _authClient.SignOut();
-                _authClient = null;  // Clear the client to ensure re-initialization next time
+                _authClient = null; 
             }
         }
     }

@@ -9,219 +9,235 @@
     Shell.NavBarIsVisible="False">
 
     <ContentPage.Content>
-        <Grid
-            Padding="0"
-            ColumnSpacing="0"
-            RowSpacing="0">
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-
-            <StackLayout
-                Grid.Row="0"
-                Padding="20,20,20,0"
-                HorizontalOptions="FillAndExpand"
-                Spacing="20">
-                <StackLayout
-                    BackgroundColor="#1F4922"
-                    HeightRequest="80"
-                    HorizontalOptions="Fill"
-                    Orientation="Horizontal">
-                    <Frame
-                        Padding="0"
-                        BackgroundColor="Transparent"
-                        BorderColor="Transparent">
-                        <!--  Inner Grid for Icon  -->
-                        <Grid>
-                            <Image
-                                Aspect="AspectFill"
-                                HeightRequest="30"
-                                HorizontalOptions="Center"
-                                Source="back_white_icon.png"
-                                VerticalOptions="Center"
-                                WidthRequest="30">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding NavigateBackCommand}" />
-                                </Image.GestureRecognizers>
-                            </Image>
-                        </Grid>
-
-                    </Frame>
-
-                    <Label
-                        FontFamily="InterRegular"
-                        FontSize="16"
-                        HorizontalOptions="CenterAndExpand"
-                        Text="Your Contributions"
-                        TextColor="White"
-                        VerticalOptions="CenterAndExpand" />
-
-                </StackLayout>
-
-                <Label
-                    FontFamily="InterBold"
-                    FontSize="36"
-                    HorizontalOptions="Center"
-                    Text="{Binding ContributionAmount, StringFormat='Rs. {0:N0}'}"
-                    TextColor="White" />
-            </StackLayout>
-
-            <!--  Numeric Pad (Grid Layout)  -->
+        <Grid>
             <Grid
-                Grid.Row="1"
-                Padding="20,0,20,20"
-                ColumnSpacing="6"
-                RowSpacing="6">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                Padding="0"
+                ColumnSpacing="0"
+                RowSpacing="0">
+
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <!--  Number Buttons  -->
-                <Button
+                <StackLayout
                     Grid.Row="0"
-                    Grid.Column="0"
-                    BackgroundColor="Transparent"
-                    Command="{Binding NumberEnterCommand}"
-                    CommandParameter="1"
-                    FontFamily="InterBold"
-                    FontSize="28"
-                    Text="1" />
-                <Button
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    BackgroundColor="Transparent"
-                    Command="{Binding NumberEnterCommand}"
-                    CommandParameter="2"
-                    FontFamily="InterBold"
-                    FontSize="28"
-                    Text="2" />
-                <Button
-                    Grid.Row="0"
-                    Grid.Column="2"
-                    BackgroundColor="Transparent"
-                    Command="{Binding NumberEnterCommand}"
-                    CommandParameter="3"
-                    FontFamily="InterBold"
-                    FontSize="28"
-                    Text="3" />
+                    Padding="20,20,20,0"
+                    HorizontalOptions="FillAndExpand"
+                    Spacing="20">
+                    <StackLayout
+                        BackgroundColor="#1F4922"
+                        HeightRequest="80"
+                        HorizontalOptions="Fill"
+                        Orientation="Horizontal">
+                        <Frame
+                            Padding="0"
+                            BackgroundColor="Transparent"
+                            BorderColor="Transparent">
+                            <!--  Inner Grid for Icon  -->
+                            <Grid>
+                                <Image
+                                    Aspect="AspectFill"
+                                    HeightRequest="30"
+                                    HorizontalOptions="Center"
+                                    Source="back_white_icon.png"
+                                    VerticalOptions="Center"
+                                    WidthRequest="30">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding NavigateBackCommand}" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Grid>
 
-                <Button
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    BackgroundColor="Transparent"
-                    Command="{Binding NumberEnterCommand}"
-                    CommandParameter="4"
-                    FontFamily="InterBold"
-                    FontSize="28"
-                    Text="4" />
-                <Button
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    BackgroundColor="Transparent"
-                    Command="{Binding NumberEnterCommand}"
-                    CommandParameter="5"
-                    FontFamily="InterBold"
-                    FontSize="28"
-                    Text="5" />
-                <Button
-                    Grid.Row="1"
-                    Grid.Column="2"
-                    BackgroundColor="Transparent"
-                    Command="{Binding NumberEnterCommand}"
-                    CommandParameter="6"
-                    FontFamily="InterBold"
-                    FontSize="28"
-                    Text="6" />
+                        </Frame>
 
-                <Button
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    BackgroundColor="Transparent"
-                    Command="{Binding NumberEnterCommand}"
-                    CommandParameter="7"
-                    FontFamily="InterBold"
-                    FontSize="28"
-                    Text="7" />
-                <Button
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    BackgroundColor="Transparent"
-                    Command="{Binding NumberEnterCommand}"
-                    CommandParameter="8"
-                    FontFamily="InterBold"
-                    FontSize="28"
-                    Text="8" />
-                <Button
-                    Grid.Row="2"
-                    Grid.Column="2"
-                    BackgroundColor="Transparent"
-                    Command="{Binding NumberEnterCommand}"
-                    CommandParameter="9"
-                    FontFamily="InterBold"
-                    FontSize="28"
-                    Text="9" />
+                        <Label
+                            FontFamily="InterRegular"
+                            FontSize="16"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="Your Contributions"
+                            TextColor="White"
+                            VerticalOptions="CenterAndExpand" />
 
-                <Button
-                    Grid.Row="3"
-                    Grid.Column="1"
-                    BackgroundColor="Transparent"
-                    Command="{Binding NumberEnterCommand}"
-                    CommandParameter="0"
-                    FontFamily="InterBold"
-                    FontSize="28"
-                    Text="0" />
-                <Button
-                    Grid.Row="3"
-                    Grid.Column="2"
-                    BackgroundColor="Transparent"
-                    Command="{Binding DeleteCommand}"
-                    FontFamily="InterBold"
-                    FontSize="28"
-                    Text="⌫" />
+                    </StackLayout>
+
+                    <Label
+                        FontFamily="InterBold"
+                        FontSize="36"
+                        HorizontalOptions="Center"
+                        Text="{Binding ContributionAmount, StringFormat='Rs. {0:N0}'}"
+                        TextColor="White" />
+                </StackLayout>
+
+                <!--  Numeric Pad (Grid Layout)  -->
+                <Grid
+                    Grid.Row="1"
+                    Padding="20,0,20,20"
+                    ColumnSpacing="6"
+                    RowSpacing="6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!--  Number Buttons  -->
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        BackgroundColor="Transparent"
+                        Command="{Binding NumberEnterCommand}"
+                        CommandParameter="1"
+                        FontFamily="InterBold"
+                        FontSize="28"
+                        Text="1" />
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        BackgroundColor="Transparent"
+                        Command="{Binding NumberEnterCommand}"
+                        CommandParameter="2"
+                        FontFamily="InterBold"
+                        FontSize="28"
+                        Text="2" />
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        BackgroundColor="Transparent"
+                        Command="{Binding NumberEnterCommand}"
+                        CommandParameter="3"
+                        FontFamily="InterBold"
+                        FontSize="28"
+                        Text="3" />
+
+                    <Button
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        BackgroundColor="Transparent"
+                        Command="{Binding NumberEnterCommand}"
+                        CommandParameter="4"
+                        FontFamily="InterBold"
+                        FontSize="28"
+                        Text="4" />
+                    <Button
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        BackgroundColor="Transparent"
+                        Command="{Binding NumberEnterCommand}"
+                        CommandParameter="5"
+                        FontFamily="InterBold"
+                        FontSize="28"
+                        Text="5" />
+                    <Button
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        BackgroundColor="Transparent"
+                        Command="{Binding NumberEnterCommand}"
+                        CommandParameter="6"
+                        FontFamily="InterBold"
+                        FontSize="28"
+                        Text="6" />
+
+                    <Button
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        BackgroundColor="Transparent"
+                        Command="{Binding NumberEnterCommand}"
+                        CommandParameter="7"
+                        FontFamily="InterBold"
+                        FontSize="28"
+                        Text="7" />
+                    <Button
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        BackgroundColor="Transparent"
+                        Command="{Binding NumberEnterCommand}"
+                        CommandParameter="8"
+                        FontFamily="InterBold"
+                        FontSize="28"
+                        Text="8" />
+                    <Button
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        BackgroundColor="Transparent"
+                        Command="{Binding NumberEnterCommand}"
+                        CommandParameter="9"
+                        FontFamily="InterBold"
+                        FontSize="28"
+                        Text="9" />
+
+                    <Button
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        BackgroundColor="Transparent"
+                        Command="{Binding NumberEnterCommand}"
+                        CommandParameter="0"
+                        FontFamily="InterBold"
+                        FontSize="28"
+                        Text="0" />
+                    <Button
+                        Grid.Row="3"
+                        Grid.Column="2"
+                        BackgroundColor="Transparent"
+                        Command="{Binding DeleteCommand}"
+                        FontFamily="InterBold"
+                        FontSize="28"
+                        Text="⌫" />
+                </Grid>
+
+                <!--  Bottom Buttons  -->
+                <StackLayout
+                    Grid.Row="2"
+                    Padding="10"
+                    HeightRequest="80"
+                    HorizontalOptions="CenterAndExpand"
+                    Orientation="Horizontal"
+                    Spacing="10">
+                    <Button
+                        BackgroundColor="#1F4922"
+                        BorderColor="#FFFFFF"
+                        BorderWidth="0.5"
+                        Command="{Binding NavigateBackCommand}"
+                        FontFamily="InterRegular"
+                        FontSize="18"
+                        Opacity="1.0"
+                        Text="Back"
+                        TextColor="#FFFFFF"
+                        WidthRequest="150" />
+                    <Button
+                        BackgroundColor="#FFFFFF"
+                        BorderColor="#FFFFFF"
+                        BorderWidth="0.5"
+                        Command="{Binding ContributeCommand}"
+                        FontFamily="InterRegular"
+                        FontSize="18"
+                        Text="Contribute"
+                        TextColor="#1F4922"
+                        WidthRequest="150" />
+                </StackLayout>
+
             </Grid>
-
-            <!--  Bottom Buttons  -->
-            <StackLayout
-                Grid.Row="2"
-                Padding="10"
-                HeightRequest="80"
-                HorizontalOptions="CenterAndExpand"
-                Orientation="Horizontal"
-                Spacing="10">
-                <Button
-                    BackgroundColor="#1F4922"
-                    BorderColor="#FFFFFF"
-                    BorderWidth="0.5"
-                    Command="{Binding NavigateBackCommand}"
-                    FontFamily="InterRegular"
-                    FontSize="18"
-                    Opacity="1.0"
-                    Text="Back"
-                    TextColor="#FFFFFF"
-                    WidthRequest="150" />
-                <Button
-                    BackgroundColor="#FFFFFF"
-                    BorderColor="#FFFFFF"
-                    BorderWidth="0.5"
-                    Command="{Binding ContributeCommand}"
-                    FontFamily="InterRegular"
-                    FontSize="18"
-                    Text="Contribute"
-                    TextColor="#1F4922"
-                    WidthRequest="150" />
-            </StackLayout>
-
+            <Grid
+                BackgroundColor="#000000AA"
+                HorizontalOptions="FillAndExpand"
+                IsVisible="{Binding IsBusy}"
+                VerticalOptions="FillAndExpand">
+                <ActivityIndicator
+                    HeightRequest="100"
+                    HorizontalOptions="Center"
+                    IsRunning="{Binding IsBusy}"
+                    VerticalOptions="Center"
+                    WidthRequest="100"
+                    Color="Orange" />
+            </Grid>
         </Grid>
+
     </ContentPage.Content>
 </ContentPage>

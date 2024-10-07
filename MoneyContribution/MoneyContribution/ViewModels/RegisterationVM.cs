@@ -18,6 +18,9 @@ namespace MoneyContribution.ViewModels
         private readonly FirebaseAuthClient _authClient;
 
         [ObservableProperty]
+        private bool _isBusy;
+
+        [ObservableProperty]
         private UserModel _user = new();
 
         public RegisterationVM(FirebaseAuthClient authClient)
@@ -28,6 +31,7 @@ namespace MoneyContribution.ViewModels
         [RelayCommand]
         private async Task Register()
         {
+            
             // Validate Email
             if (string.IsNullOrWhiteSpace(_user.Email) || !IsValidEmail(_user.Email))
             {
@@ -51,12 +55,15 @@ namespace MoneyContribution.ViewModels
 
             try
             {
+                IsBusy = true;
                 var result = await _authClient.CreateUserWithEmailAndPasswordAsync(_user.Email, _user.Password, _user.Username);
+                IsBusy = false;
                 if (!string.IsNullOrWhiteSpace(result?.User?.Info?.Email))
                 {
                     await Shell.Current.GoToAsync("//LoginPage");
 
                 }
+
             }
             catch (FirebaseAuthException ex)
             {

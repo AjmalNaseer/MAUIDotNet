@@ -20,6 +20,9 @@ namespace MoneyContribution.ViewModels
         private  FirebaseAuthClient _authClient;
 
         [ObservableProperty]
+        private bool _isBusy;
+
+        [ObservableProperty]
         private ObservableCollection<Contributions> _contributions = new();
 
         [ObservableProperty]
@@ -38,10 +41,12 @@ namespace MoneyContribution.ViewModels
         }
         public async Task InitializeAsync()
         {
+            IsBusy = true;
             _authClient = FirebaseAuthServices.AuthClient;
             _currentUserName = await FetchUserDetails();
             LoadUserContributions();
             LoadCollectedMoney();
+            IsBusy = false;
         }
         
         private async void LoadCollectedMoney()
@@ -71,6 +76,7 @@ namespace MoneyContribution.ViewModels
         {
             try
             {
+               
                 var contributions = await _firebaseClient
                     .Child("contributions")
                     .OrderBy("Timestamp")
@@ -99,6 +105,8 @@ namespace MoneyContribution.ViewModels
                     {
                         UserContributions.Add(contribution);
                     }
+                   
+
                 }
                 else
                 {

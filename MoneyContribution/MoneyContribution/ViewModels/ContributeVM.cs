@@ -18,6 +18,9 @@ namespace MoneyContribution.ViewModels
         private FirebaseAuthClient _authClient;
 
         [ObservableProperty]
+        private bool _isBusy;
+
+        [ObservableProperty]
         private string _contributionAmount;
 
         [ObservableProperty]
@@ -70,6 +73,7 @@ namespace MoneyContribution.ViewModels
 
                 try
                 {
+                    IsBusy = true;
                     var contributionData = new Contributions
                     {
                         Amount = contribution,
@@ -84,7 +88,7 @@ namespace MoneyContribution.ViewModels
 
                     ContributionAmount = string.Empty;
                     UserContributions.Add(contributionData);
-
+                    IsBusy = false;
                     await App.Current.MainPage.DisplayAlert("Thank You", "Your contribution successfully added.", "OK");
                     await Shell.Current.GoToAsync("//DashboardPage");
                 }
