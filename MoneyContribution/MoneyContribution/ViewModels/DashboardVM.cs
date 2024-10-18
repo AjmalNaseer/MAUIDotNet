@@ -11,6 +11,7 @@ using Firebase.Auth.Providers;
 using Firebase.Auth.Repository;
 using MoneyContribution.Services;
 using MoneyContribution.Models;
+using System.Reflection;
 
 namespace MoneyContribution.ViewModels
 {
@@ -38,7 +39,9 @@ namespace MoneyContribution.ViewModels
         public DashboardVM()
         {
             _firebaseClient = new FirebaseClient(ContribAPIs.FirebaseUrl);
+            SubscribeToRealtimeUpdates();
         }
+
         public async Task InitializeAsync()
         {
             IsBusy = true;
@@ -48,7 +51,36 @@ namespace MoneyContribution.ViewModels
             LoadCollectedMoney();
             IsBusy = false;
         }
-        
+
+        private void SubscribeToRealtimeUpdates()
+        {
+            // Listen to the changes in the 'contributions' node
+            _firebaseClient
+                .Child("contributions")
+                .AsObservable<Contributions>()
+                .Subscribe(contribution =>
+                {
+                    if (contribution.EventType == Firebase.Database.Streaming.FirebaseEventType.InsertOrUpdate)
+                    {
+                        try
+                        {
+                            // Code that is causing the exception
+                            LoadCollectedMoney();
+                            LoadUserContributions();
+                        }
+                        catch (TargetInvocationException ex)
+                        {
+                            Console.WriteLine($"Invocation Exception: {ex.Message}");
+                            Console.WriteLine($"Inner Exception: {ex.InnerException?.Message}");
+                        }
+                    }
+                }, ex =>
+                {
+                    // Handle any errors in listening to real-time updates
+                    Console.WriteLine($"Error in real-time updates: {ex.Message}");
+                });
+        }
+
         private async void LoadCollectedMoney()
         {
             try
