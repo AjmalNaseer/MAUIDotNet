@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="PublicAPI.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <StackLayout Padding="10">
+        <!-- Display Time -->
+        <Label
+            FontSize="Medium"
+            FontAttributes="Bold"
+            Text="{Binding CurrentPrice.time.Updated}"
+            HorizontalOptions="Center" />
+
+        <!-- Display Disclaimer -->
+        <Label
+            FontSize="Small"
+            Text="{Binding CurrentPrice.disclaimer}"
+            HorizontalOptions="Center" />
+
+        <!-- Display Chart Name -->
+        <Label
+            FontSize="Large"
+            Text="{Binding CurrentPrice.chartName}"
+            HorizontalOptions="Center" />
+
+        <!-- CollectionView for BPI Currencies -->
+        <CollectionView ItemsSource="{Binding BpiList}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Currency Code -->
+                        <Label
+                            Grid.Column="0"
+                            FontAttributes="Bold"
+                            Text="{Binding Code}"
+                            VerticalOptions="Center" />
+
+                        <!-- Currency Rate -->
+                        <Label
+                            Grid.Column="1"
+                            Text="{Binding Rate}"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>
