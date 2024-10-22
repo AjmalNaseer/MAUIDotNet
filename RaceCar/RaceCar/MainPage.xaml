@@ -4,32 +4,26 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <ScrollView>
-        <VerticalStackLayout Padding="30,0" Spacing="25">
-            <Image
-                Aspect="AspectFit"
-                HeightRequest="185"
-                SemanticProperties.Description="dot net bot in a race car number eight"
-                Source="dotnet_bot.png" />
-
-            <Label
-                SemanticProperties.HeadingLevel="Level1"
-                Style="{StaticResource Headline}"
-                Text="Hello, World! Version 17.11.4" />
-
-            <Label
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                SemanticProperties.HeadingLevel="Level2"
-                Style="{StaticResource SubHeadline}"
-                Text="Welcome to &#10;.NET Multi-platform App UI" />
-
-            <Button
-                x:Name="CounterBtn"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Fill"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Text="Click me" />
-        </VerticalStackLayout>
-    </ScrollView>
+    <StackLayout Padding="20">
+        <Button Clicked="OnLoadExcelClicked" Text="Load Excel" />
+        <CollectionView x:Name="ExcelDataCollectionView">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{Binding Column1}" />
+                        <Label Text="{Binding Column2}" />
+                        <Label Text="{Binding Column3}" />
+                        <Label Text="{Binding Column4}" />
+                        <!--  Add more Labels for additional columns  -->
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <StackLayout>
+            <Label x:Name="resultLabel" />
+            <Button Clicked="OnScrapeButtonClicked" Text="Scrap" />
+            <WebView x:Name="webView" HeightRequest="600" />
+        </StackLayout>
+    </StackLayout>
 
 </ContentPage>

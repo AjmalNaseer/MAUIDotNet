@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="WebScrapping.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <VerticalStackLayout Padding="10">
+        <!--  CollectionView to show Excel data in table format  -->
+        <CollectionView ItemsSource="{Binding ExcelData}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid
+                        Padding="5"
+                        ColumnDefinitions="Auto, Auto, Auto, Auto"
+                        RowDefinitions="Auto">
+                        <Label Grid.Column="0" Text="{Binding CardNumber}" />
+                        <Label Grid.Column="1" Text="{Binding CustomerNumber}" />
+                        <Label Grid.Column="2" Text="{Binding Email}" />
+                        <Label Grid.Column="3" Text="{Binding MobileNumber}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!--  Button to load Excel file  -->
+        <Button Command="{Binding LoadExcelCommand}" Text="Load Excel File" />
+
+        <!--  Button to perform web scraping  -->
+        <Button Command="{Binding WebScrapingCommand}" Text="Update via Web Scraping" />
+    </VerticalStackLayout>
+</ContentPage>
