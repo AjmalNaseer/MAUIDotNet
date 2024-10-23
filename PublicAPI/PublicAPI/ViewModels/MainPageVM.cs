@@ -10,9 +10,18 @@ namespace PublicAPI.ViewModels
 {
     public class MainPageVM : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        #region Fields
 
         private CurrentPrice _currentPrice;
+        private ObservableCollection<CurrencyInfo> _bpiList;
+        public readonly APIFetch aPIFetch;
+
+        #endregion
+
+        #region Properties
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public CurrentPrice CurrentPrice
         {
             get => _currentPrice;
@@ -33,7 +42,6 @@ namespace PublicAPI.ViewModels
             }
         }
 
-        private ObservableCollection<CurrencyInfo> _bpiList;
         public ObservableCollection<CurrencyInfo> BpiList
         {
             get => _bpiList;
@@ -44,7 +52,9 @@ namespace PublicAPI.ViewModels
             }
         }
 
-        public readonly APIFetch aPIFetch;
+        #endregion
+
+        #region Constructor
 
         public MainPageVM()
         {
@@ -52,6 +62,10 @@ namespace PublicAPI.ViewModels
             BpiList = new ObservableCollection<CurrencyInfo>(); // Initialize an empty list
             _ = LoadData();
         }
+
+        #endregion
+
+        #region Methods
 
         public async Task LoadData()
         {
@@ -68,5 +82,7 @@ namespace PublicAPI.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+
+        #endregion
     }
 }

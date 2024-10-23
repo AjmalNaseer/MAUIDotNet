@@ -600,7 +600,6 @@ namespace PublicAPI.ViewModels
 
             };
 
-            // Set ItemNumber property for each ticket
             foreach (var ticket in Tickets)
             {
                 ticket.ItemNumber = ticket.Items.Count;
