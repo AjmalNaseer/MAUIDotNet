@@ -57,9 +57,96 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\Inter_18pt-Black.ttf" />
+	  <None Remove="Resources\Fonts\Inter_18pt-BlackItalic.ttf" />
+	  <None Remove="Resources\Fonts\Inter_18pt-Bold.ttf" />
+	  <None Remove="Resources\Fonts\Inter_18pt-BoldItalic.ttf" />
+	  <None Remove="Resources\Fonts\Inter_18pt-ExtraBold.ttf" />
+	  <None Remove="Resources\Fonts\Inter_18pt-ExtraBoldItalic.ttf" />
+	  <None Remove="Resources\Fonts\Inter_18pt-ExtraLight.ttf" />
+	  <None Remove="Resources\Fonts\Inter_18pt-ExtraLightItalic.ttf" />
+	  <None Remove="Resources\Fonts\Inter_18pt-Italic.ttf" />
+	  <None Remove="Resources\Fonts\Inter_18pt-Light.ttf" />
+	  <None Remove="Resources\Fonts\Inter_18pt-LightItalic.ttf" />
+	  <None Remove="Resources\Fonts\Inter_18pt-Medium.ttf" />
+	  <None Remove="Resources\Fonts\Inter_18pt-MediumItalic.ttf" />
+	  <None Remove="Resources\Fonts\Inter_18pt-Regular.ttf" />
+	  <None Remove="Resources\Fonts\Inter_18pt-SemiBold.ttf" />
+	  <None Remove="Resources\Fonts\Inter_18pt-SemiBoldItalic.ttf" />
+	  <None Remove="Resources\Fonts\Inter_18pt-Thin.ttf" />
+	  <None Remove="Resources\Fonts\Inter_18pt-ThinItalic.ttf" />
+	  <None Remove="Resources\Fonts\Inter_24pt-Black.ttf" />
+	  <None Remove="Resources\Fonts\Inter_24pt-BlackItalic.ttf" />
+	  <None Remove="Resources\Fonts\Inter_24pt-Bold.ttf" />
+	  <None Remove="Resources\Fonts\Inter_24pt-BoldItalic.ttf" />
+	  <None Remove="Resources\Fonts\Inter_24pt-ExtraBold.ttf" />
+	  <None Remove="Resources\Fonts\Inter_24pt-ExtraBoldItalic.ttf" />
+	  <None Remove="Resources\Fonts\Inter_24pt-ExtraLight.ttf" />
+	  <None Remove="Resources\Fonts\Inter_24pt-ExtraLightItalic.ttf" />
+	  <None Remove="Resources\Fonts\Inter_24pt-Italic.ttf" />
+	  <None Remove="Resources\Fonts\Inter_24pt-Light.ttf" />
+	  <None Remove="Resources\Fonts\Inter_24pt-LightItalic.ttf" />
+	  <None Remove="Resources\Fonts\Inter_24pt-Medium.ttf" />
+	  <None Remove="Resources\Fonts\Inter_24pt-MediumItalic.ttf" />
+	  <None Remove="Resources\Fonts\Inter_24pt-Regular.ttf" />
+	  <None Remove="Resources\Fonts\Inter_24pt-SemiBold.ttf" />
+	  <None Remove="Resources\Fonts\Inter_24pt-SemiBoldItalic.ttf" />
+	  <None Remove="Resources\Fonts\Inter_24pt-Thin.ttf" />
+	  <None Remove="Resources\Fonts\Inter_24pt-ThinItalic.ttf" />
+	  <None Remove="Resources\Fonts\Inter_28pt-Black.ttf" />
+	  <None Remove="Resources\Fonts\Inter_28pt-BlackItalic.ttf" />
+	  <None Remove="Resources\Fonts\Inter_28pt-Bold.ttf" />
+	  <None Remove="Resources\Fonts\Inter_28pt-BoldItalic.ttf" />
+	  <None Remove="Resources\Fonts\Inter_28pt-ExtraBold.ttf" />
+	  <None Remove="Resources\Fonts\Inter_28pt-ExtraBoldItalic.ttf" />
+	  <None Remove="Resources\Fonts\Inter_28pt-ExtraLight.ttf" />
+	  <None Remove="Resources\Fonts\Inter_28pt-ExtraLightItalic.ttf" />
+	  <None Remove="Resources\Fonts\Inter_28pt-Italic.ttf" />
+	  <None Remove="Resources\Fonts\Inter_28pt-Light.ttf" />
+	  <None Remove="Resources\Fonts\Inter_28pt-LightItalic.ttf" />
+	  <None Remove="Resources\Fonts\Inter_28pt-Medium.ttf" />
+	  <None Remove="Resources\Fonts\Inter_28pt-MediumItalic.ttf" />
+	  <None Remove="Resources\Fonts\Inter_28pt-Regular.ttf" />
+	  <None Remove="Resources\Fonts\Inter_28pt-SemiBold.ttf" />
+	  <None Remove="Resources\Fonts\Inter_28pt-SemiBoldItalic.ttf" />
+	  <None Remove="Resources\Fonts\Inter_28pt-Thin.ttf" />
+	  <None Remove="Resources\Fonts\Inter_28pt-ThinItalic.ttf" />
+	  <None Remove="Resources\Fonts\RobotoCondensed-Black.ttf" />
+	  <None Remove="Resources\Fonts\RobotoCondensed-BlackItalic.ttf" />
+	  <None Remove="Resources\Fonts\RobotoCondensed-Bold.ttf" />
+	  <None Remove="Resources\Fonts\RobotoCondensed-BoldItalic.ttf" />
+	  <None Remove="Resources\Fonts\RobotoCondensed-ExtraBold.ttf" />
+	  <None Remove="Resources\Fonts\RobotoCondensed-ExtraBoldItalic.ttf" />
+	  <None Remove="Resources\Fonts\RobotoCondensed-ExtraLight.ttf" />
+	  <None Remove="Resources\Fonts\RobotoCondensed-ExtraLightItalic.ttf" />
+	  <None Remove="Resources\Fonts\RobotoCondensed-Italic.ttf" />
+	  <None Remove="Resources\Fonts\RobotoCondensed-Light.ttf" />
+	  <None Remove="Resources\Fonts\RobotoCondensed-LightItalic.ttf" />
+	  <None Remove="Resources\Fonts\RobotoCondensed-Medium.ttf" />
+	  <None Remove="Resources\Fonts\RobotoCondensed-MediumItalic.ttf" />
+	  <None Remove="Resources\Fonts\RobotoCondensed-Regular.ttf" />
+	  <None Remove="Resources\Fonts\RobotoCondensed-SemiBold.ttf" />
+	  <None Remove="Resources\Fonts\RobotoCondensed-SemiBoldItalic.ttf" />
+	  <None Remove="Resources\Fonts\RobotoCondensed-Thin.ttf" />
+	  <None Remove="Resources\Fonts\RobotoCondensed-ThinItalic.ttf" />
+	  <None Remove="Resources\Images\backward_arrow.svg" />
+	  <None Remove="Resources\Images\forward_arrow.svg" />
+	  <None Remove="Resources\Images\green_tick_icon.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.92" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.92" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\AllTicketsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TicketsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

@@ -50,7 +50,7 @@ namespace PublicAPI.ViewModels
         {
             aPIFetch = new APIFetch();
             BpiList = new ObservableCollection<CurrencyInfo>(); // Initialize an empty list
-            LoadData();
+            _ = LoadData();
         }
 
         public async Task LoadData()
@@ -64,7 +64,7 @@ namespace PublicAPI.ViewModels
             }
         }
 
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        protected void OnPropertyChanged([CallerMemberName] string? name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }

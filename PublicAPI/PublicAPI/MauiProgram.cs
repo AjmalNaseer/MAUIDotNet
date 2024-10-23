@@ -13,6 +13,9 @@ namespace PublicAPI
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("RobotoCondensed-Regular.ttf", "RobotoCondensedRegular");
+                    fonts.AddFont("Inter_28pt-SemiBold.ttf", "InterSemiBold");
+                    
                 });
 
 #if DEBUG

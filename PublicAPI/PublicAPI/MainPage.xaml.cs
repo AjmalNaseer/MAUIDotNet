@@ -15,7 +15,7 @@ namespace PublicAPI
             BindingContext = mainPageVM;
 
             // Call LoadData() after ViewModel initialization
-            mainPageVM.LoadData();
+            _ = mainPageVM.LoadData();
         }
     }
 }

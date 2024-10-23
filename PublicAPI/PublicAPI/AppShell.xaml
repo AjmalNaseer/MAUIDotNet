@@ -3,13 +3,13 @@
     x:Class="PublicAPI.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:PublicAPI"
-    Shell.FlyoutBehavior="Disabled"
-    Title="PublicAPI">
+    xmlns:local="clr-namespace:PublicAPI.Views"
+    Title="PublicAPI"
+    Shell.FlyoutBehavior="Disabled">
 
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
+        ContentTemplate="{DataTemplate local:TicketsPage}"
         Route="MainPage" />
 
 </Shell>
