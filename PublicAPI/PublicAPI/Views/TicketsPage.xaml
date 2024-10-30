@@ -2,444 +2,443 @@
     x:Class="PublicAPI.Views.TicketsPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:PublicAPI.Custom"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     BackgroundColor="#757575"
     Shell.NavBarIsVisible="False">
-    <StackLayout Padding="12.75,12.75,12.75,7.5">
-        <ScrollView
-            HorizontalScrollBarVisibility="Never"
-            Orientation="{OnPlatform iOS=Vertical,
-                                     Android=Vertical,
-                                     WinUI=Horizontal}"
-            VerticalScrollBarVisibility="Never">
-            <ScrollView.HorizontalOptions>
-                <OnPlatform x:TypeArguments="LayoutOptions">
-                    <On Platform="iOS" Value="CenterAndExpand" />
-                    <On Platform="Android" Value="CenterAndExpand" />
-                </OnPlatform>
-            </ScrollView.HorizontalOptions>
-            <ScrollView.VerticalOptions>
-                <OnPlatform x:TypeArguments="LayoutOptions">
-                    <On Platform="iOS" Value="CenterAndExpand" />
-                    <On Platform="Android" Value="CenterAndExpand" />
-                </OnPlatform>
-            </ScrollView.VerticalOptions>
-            <FlexLayout
-                x:Name="FlexSkillContainer"
-                Margin="0,0,0,0"
-                Padding="0"
-                AlignContent="{OnPlatform iOS=Center,
-                                          Android=Center,
-                                          WinUI=Start}"
-                AlignItems="{OnPlatform iOS=Center,
-                                        Android=Center,
-                                        WinUI=Start}"
-                BindableLayout.ItemsSource="{Binding Tickets}"
-                Direction="{OnPlatform WinUI=Column,
-                                       Default=Column}"
-                HeightRequest="{OnPlatform WinUI=730,
-                                           Android=-1}"
-                HorizontalOptions="{OnPlatform iOS=Center,
-                                               Android=Center,
-                                               WinUI=Start}"
-                JustifyContent="{OnPlatform iOS=Center,
+    <Grid Margin="12.75,12.75,8,7.5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid Grid.Row="0">
+
+                <FlexLayout
+                    x:Name="FlexSkillContainer"
+                    Margin="0,0,0,0"
+                    Padding="0"
+                    AlignContent="{OnPlatform iOS=Center,
+                                              Android=Center,
+                                              WinUI=Start}"
+                    AlignItems="{OnPlatform iOS=Center,
                                             Android=Center,
                                             WinUI=Start}"
-                VerticalOptions="{OnPlatform iOS=Center,
-                                             Android=Center,
-                                             WinUI=Start}"
-                Wrap="{OnPlatform WinUI=Wrap,
-                                  Default=NoWrap}">
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout
-                            x:Name="TicketFrame"
-                            Margin="3"
-                            Padding="0"
-                            VerticalOptions="StartAndExpand">
-                            <Frame
+                    BindableLayout.ItemsSource="{Binding Tickets}"
+                    Direction="{OnPlatform WinUI=Column,
+                                           Default=Column}"
+                    HorizontalOptions="StartAndExpand"
+                    JustifyContent="{OnPlatform iOS=Center,
+                                                Android=Center,
+                                                WinUI=Start}"
+                    Wrap="{OnPlatform WinUI=Wrap,
+                                      Default=NoWrap}">
+
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid
+                                x:Name="TicketFrame"
                                 Padding="0"
-                                BorderColor="Transparent"
-                                CornerRadius="0"
-                                HasShadow="True"
-                                VerticalOptions="StartAndExpand"
-                                WidthRequest="{OnPlatform iOS=250,
-                                                          Android=300,
-                                                          WinUI=168}">
+                                VerticalOptions="FillAndExpand">
+                                <Frame
+                                    Margin="0,15,15,0"
+                                    Padding="0"
+                                    BorderColor="Transparent"
+                                    CornerRadius="0"
+                                    HasShadow="True"
+                                    VerticalOptions="FillAndExpand"
+                                    WidthRequest="{OnPlatform iOS=250,
+                                                              Android=300,
+                                                              WinUI=168}">
 
-                                <StackLayout Padding="0">
-                                    <StackLayout
-                                        x:Name="TickerHeader"
-                                        Padding="3,4,3,3"
-                                        InputTransparent="False">
-                                        <StackLayout.Triggers>
-                                            <DataTrigger
-                                                Binding="{Binding IsTimeExceeded}"
-                                                TargetType="StackLayout"
-                                                Value="True">
-                                                <Setter Property="BackgroundColor" Value="#943F3F" />
-                                            </DataTrigger>
-                                            <DataTrigger
-                                                Binding="{Binding IsTimeExceeded}"
-                                                TargetType="StackLayout"
-                                                Value="False">
-                                                <Setter Property="BackgroundColor" Value="#ACB8B4" />
-                                            </DataTrigger>
-                                        </StackLayout.Triggers>
-                                        <StackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.CompleteTicketCommand}" CommandParameter="{Binding .}">
-                                                <TapGestureRecognizer.NumberOfTapsRequired>
-                                                    <OnPlatform x:TypeArguments="x:Int32">
-                                                        <On Platform="WinUI" Value="2" />
-                                                        <On Platform="Android" Value="2" />
-                                                    </OnPlatform>
-                                                </TapGestureRecognizer.NumberOfTapsRequired>
-                                            </TapGestureRecognizer>
+                                    <StackLayout Padding="0">
+                                        <StackLayout
+                                            x:Name="TickerHeader"
+                                            Padding="3,4,3,3"
+                                            InputTransparent="False">
+                                            <StackLayout.Triggers>
+                                                <DataTrigger
+                                                    Binding="{Binding IsTimeExceeded}"
+                                                    TargetType="StackLayout"
+                                                    Value="True">
+                                                    <Setter Property="BackgroundColor" Value="#943F3F" />
+                                                </DataTrigger>
+                                                <DataTrigger
+                                                    Binding="{Binding IsTimeExceeded}"
+                                                    TargetType="StackLayout"
+                                                    Value="False">
+                                                    <Setter Property="BackgroundColor" Value="#ACB8B4" />
+                                                </DataTrigger>
+                                            </StackLayout.Triggers>
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.CompleteTicketCommand}" CommandParameter="{Binding .}">
+                                                    <TapGestureRecognizer.NumberOfTapsRequired>
+                                                        <OnPlatform x:TypeArguments="x:Int32">
+                                                            <On Platform="WinUI" Value="2" />
+                                                            <On Platform="Android" Value="2" />
+                                                        </OnPlatform>
+                                                    </TapGestureRecognizer.NumberOfTapsRequired>
+                                                </TapGestureRecognizer>
 
-                                        </StackLayout.GestureRecognizers>
-                                        <Frame
-                                            Padding="0"
-                                            BackgroundColor="Transparent"
-                                            BorderColor="Transparent"
-                                            CornerRadius="0"
-                                            HeightRequest="25">
-                                            <StackLayout
+                                            </StackLayout.GestureRecognizers>
+                                            <Frame
                                                 Padding="0"
-                                                Orientation="Horizontal"
-                                                Spacing="3"
-                                                VerticalOptions="CenterAndExpand">
-                                                <Label
-                                                    FontAttributes="None"
-                                                    FontFamily="RobotoCondensedRegular"
-                                                    FontSize="11.25"
-                                                    Text="{Binding TicketNumber, StringFormat='# [{0}]'}"
-                                                    VerticalOptions="End">
-                                                    <Label.Triggers>
-                                                        <DataTrigger
-                                                            Binding="{Binding IsTimeExceeded}"
-                                                            TargetType="Label"
-                                                            Value="True">
-                                                            <Setter Property="TextColor" Value="#FFFFFF" />
-                                                        </DataTrigger>
-                                                        <DataTrigger
-                                                            Binding="{Binding IsTimeExceeded}"
-                                                            TargetType="Label"
-                                                            Value="False">
-                                                            <Setter Property="TextColor" Value="#000000" />
-                                                        </DataTrigger>
-                                                    </Label.Triggers>
-                                                </Label>
-                                                <Label
-                                                    FontAttributes="None"
-                                                    FontFamily="RobotoCondensedRegular"
-                                                    FontSize="11.25"
-                                                    HorizontalOptions="CenterAndExpand"
-                                                    Text="{Binding ItemNumber, StringFormat='Items:{0}'}"
-                                                    VerticalOptions="End">
-                                                    <Label.Triggers>
-                                                        <DataTrigger
-                                                            Binding="{Binding IsTimeExceeded}"
-                                                            TargetType="Label"
-                                                            Value="True">
-                                                            <Setter Property="TextColor" Value="#FFFFFF" />
-                                                        </DataTrigger>
-                                                        <DataTrigger
-                                                            Binding="{Binding IsTimeExceeded}"
-                                                            TargetType="Label"
-                                                            Value="False">
-                                                            <Setter Property="TextColor" Value="#000000" />
-                                                        </DataTrigger>
-                                                    </Label.Triggers>
-                                                </Label>
-                                                <Label
-                                                    Padding="0,0,3,0"
-                                                    FontAttributes="None"
-                                                    FontFamily="RobotoCondensedRegular"
-                                                    FontSize="15"
-                                                    HorizontalOptions="End"
-                                                    Text="{Binding TableNumber, StringFormat='Table {0}'}"
-                                                    VerticalOptions="End">
-                                                    <Label.Triggers>
-                                                        <DataTrigger
-                                                            Binding="{Binding IsTimeExceeded}"
-                                                            TargetType="Label"
-                                                            Value="True">
-                                                            <Setter Property="TextColor" Value="#FFFFFF" />
-                                                        </DataTrigger>
-                                                        <DataTrigger
-                                                            Binding="{Binding IsTimeExceeded}"
-                                                            TargetType="Label"
-                                                            Value="False">
-                                                            <Setter Property="TextColor" Value="#000000" />
-                                                        </DataTrigger>
-                                                    </Label.Triggers>
-                                                </Label>
-                                            </StackLayout>
-                                        </Frame>
-                                        <Frame
-                                            Padding="0"
-                                            BackgroundColor="Transparent"
-                                            BorderColor="Transparent"
-                                            CornerRadius="0"
-                                            HeightRequest="25">
-                                            <StackLayout Padding="0" Orientation="Horizontal">
-                                                <Label
-                                                    FontAttributes="None"
-                                                    FontFamily="RobotoCondensedRegular"
-                                                    FontSize="11.25"
-                                                    Text="{Binding OrderDateTime, StringFormat='{0:MM/dd HH:mm:ss}'}"
-                                                    VerticalOptions="End">
-                                                    <Label.Triggers>
-                                                        <DataTrigger
-                                                            Binding="{Binding IsTimeExceeded}"
-                                                            TargetType="Label"
-                                                            Value="True">
-                                                            <Setter Property="TextColor" Value="#FFFFFF" />
-                                                        </DataTrigger>
-                                                        <DataTrigger
-                                                            Binding="{Binding IsTimeExceeded}"
-                                                            TargetType="Label"
-                                                            Value="False">
-                                                            <Setter Property="TextColor" Value="#000000" />
-                                                        </DataTrigger>
-                                                    </Label.Triggers>
-                                                </Label>
-                                                <Label
-                                                    Padding="0,0,3,0"
-                                                    FontAttributes="None"
-                                                    FontFamily="RobotoCondensedRegular"
-                                                    FontSize="15"
-                                                    HorizontalOptions="EndAndExpand"
-                                                    Text="{Binding WaiterName, StringFormat='[{0}]'}"
-                                                    VerticalOptions="End">
-                                                    <Label.Triggers>
-                                                        <DataTrigger
-                                                            Binding="{Binding IsTimeExceeded}"
-                                                            TargetType="Label"
-                                                            Value="True">
-                                                            <Setter Property="TextColor" Value="#FFFFFF" />
-                                                        </DataTrigger>
-                                                        <DataTrigger
-                                                            Binding="{Binding IsTimeExceeded}"
-                                                            TargetType="Label"
-                                                            Value="False">
-                                                            <Setter Property="TextColor" Value="#000000" />
-                                                        </DataTrigger>
-                                                    </Label.Triggers>
-                                                </Label>
-                                            </StackLayout>
-                                        </Frame>
-                                    </StackLayout>
-                                    <StackLayout
-                                        x:Name="TicketBody"
-                                        Padding="5"
-                                        BackgroundColor="#FFFFFF">
-                                        <CollectionView ItemsSource="{Binding Items}" VerticalScrollBarVisibility="Never">
-                                            <CollectionView.ItemTemplate>
-                                                <DataTemplate>
-                                                    <StackLayout Orientation="Vertical">
-                                                        <StackLayout Orientation="Horizontal" Spacing="6">
-                                                            <StackLayout.GestureRecognizers>
-                                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.CompleteItemCommand}" CommandParameter="{Binding .}" />
-                                                            </StackLayout.GestureRecognizers>
-                                                            <Label
-                                                                FontAttributes="None"
-                                                                FontFamily="RobotoCondensedRegular"
-                                                                FontSize="15"
-                                                                Text="{Binding Quantity}"
-                                                                TextColor="Black" />
-                                                            <Label
-                                                                FontAttributes="None"
-                                                                FontFamily="RobotoCondensedRegular"
-                                                                FontSize="15"
-                                                                Text="{Binding ItemName}"
-                                                                TextColor="Black" />
-                                                            <Image
-                                                                HeightRequest="12 "
-                                                                IsVisible="{Binding IsCompleted}"
-                                                                Source="green_tick_icon.png"
-                                                                WidthRequest="12" />
+                                                BackgroundColor="Transparent"
+                                                BorderColor="Transparent"
+                                                CornerRadius="0"
+                                                HeightRequest="25">
+                                                <StackLayout
+                                                    Padding="0"
+                                                    Orientation="Horizontal"
+                                                    Spacing="3"
+                                                    VerticalOptions="FillAndExpand">
+                                                    <Label
+                                                        FontAttributes="None"
+                                                        FontFamily="RobotoCondensedRegular"
+                                                        FontSize="11.25"
+                                                        Text="{Binding TicketNumber, StringFormat='# [{0}]'}"
+                                                        VerticalOptions="End">
+                                                        <Label.Triggers>
+                                                            <DataTrigger
+                                                                Binding="{Binding IsTimeExceeded}"
+                                                                TargetType="Label"
+                                                                Value="True">
+                                                                <Setter Property="TextColor" Value="#FFFFFF" />
+                                                            </DataTrigger>
+                                                            <DataTrigger
+                                                                Binding="{Binding IsTimeExceeded}"
+                                                                TargetType="Label"
+                                                                Value="False">
+                                                                <Setter Property="TextColor" Value="#000000" />
+                                                            </DataTrigger>
+                                                        </Label.Triggers>
+                                                    </Label>
+                                                    <Label
+                                                        FontAttributes="None"
+                                                        FontFamily="RobotoCondensedRegular"
+                                                        FontSize="11.25"
+                                                        HorizontalOptions="CenterAndExpand"
+                                                        Text="{Binding ItemNumber, StringFormat='Items:{0}'}"
+                                                        VerticalOptions="End">
+                                                        <Label.Triggers>
+                                                            <DataTrigger
+                                                                Binding="{Binding IsTimeExceeded}"
+                                                                TargetType="Label"
+                                                                Value="True">
+                                                                <Setter Property="TextColor" Value="#FFFFFF" />
+                                                            </DataTrigger>
+                                                            <DataTrigger
+                                                                Binding="{Binding IsTimeExceeded}"
+                                                                TargetType="Label"
+                                                                Value="False">
+                                                                <Setter Property="TextColor" Value="#000000" />
+                                                            </DataTrigger>
+                                                        </Label.Triggers>
+                                                    </Label>
+                                                    <Label
+                                                        Padding="0,0,3,0"
+                                                        FontAttributes="None"
+                                                        FontFamily="RobotoCondensedRegular"
+                                                        FontSize="15"
+                                                        HorizontalOptions="End"
+                                                        Text="{Binding TableNumber, StringFormat='Table {0}'}"
+                                                        VerticalOptions="End">
+                                                        <Label.Triggers>
+                                                            <DataTrigger
+                                                                Binding="{Binding IsTimeExceeded}"
+                                                                TargetType="Label"
+                                                                Value="True">
+                                                                <Setter Property="TextColor" Value="#FFFFFF" />
+                                                            </DataTrigger>
+                                                            <DataTrigger
+                                                                Binding="{Binding IsTimeExceeded}"
+                                                                TargetType="Label"
+                                                                Value="False">
+                                                                <Setter Property="TextColor" Value="#000000" />
+                                                            </DataTrigger>
+                                                        </Label.Triggers>
+                                                    </Label>
+                                                </StackLayout>
+                                            </Frame>
+                                            <Frame
+                                                Padding="0"
+                                                BackgroundColor="Transparent"
+                                                BorderColor="Transparent"
+                                                CornerRadius="0"
+                                                HeightRequest="25">
+                                                <StackLayout Padding="0" Orientation="Horizontal">
+                                                    <Label
+                                                        FontAttributes="None"
+                                                        FontFamily="RobotoCondensedRegular"
+                                                        FontSize="11.25"
+                                                        Text="{Binding OrderDateTime, StringFormat='{0:MM/dd HH:mm:ss}'}"
+                                                        VerticalOptions="End">
+                                                        <Label.Triggers>
+                                                            <DataTrigger
+                                                                Binding="{Binding IsTimeExceeded}"
+                                                                TargetType="Label"
+                                                                Value="True">
+                                                                <Setter Property="TextColor" Value="#FFFFFF" />
+                                                            </DataTrigger>
+                                                            <DataTrigger
+                                                                Binding="{Binding IsTimeExceeded}"
+                                                                TargetType="Label"
+                                                                Value="False">
+                                                                <Setter Property="TextColor" Value="#000000" />
+                                                            </DataTrigger>
+                                                        </Label.Triggers>
+                                                    </Label>
+                                                    <Label
+                                                        Padding="0,0,3,0"
+                                                        FontAttributes="None"
+                                                        FontFamily="RobotoCondensedRegular"
+                                                        FontSize="15"
+                                                        HorizontalOptions="EndAndExpand"
+                                                        Text="{Binding WaiterName, StringFormat='[{0}]'}"
+                                                        VerticalOptions="End">
+                                                        <Label.Triggers>
+                                                            <DataTrigger
+                                                                Binding="{Binding IsTimeExceeded}"
+                                                                TargetType="Label"
+                                                                Value="True">
+                                                                <Setter Property="TextColor" Value="#FFFFFF" />
+                                                            </DataTrigger>
+                                                            <DataTrigger
+                                                                Binding="{Binding IsTimeExceeded}"
+                                                                TargetType="Label"
+                                                                Value="False">
+                                                                <Setter Property="TextColor" Value="#000000" />
+                                                            </DataTrigger>
+                                                        </Label.Triggers>
+                                                    </Label>
+                                                </StackLayout>
+                                            </Frame>
+                                        </StackLayout>
+                                        <Line
+                                            Stroke="#000000"
+                                            StrokeDashArray="5,7"
+                                            StrokeDashOffset="2"
+                                            StrokeThickness="1"
+                                            X2="200" />
+                                        <StackLayout
+                                            x:Name="TicketBody"
+                                            Padding="5"
+                                            BackgroundColor="#FFFFFF">
+                                            <CollectionView ItemsSource="{Binding Items}" VerticalScrollBarVisibility="Never">
+                                                <CollectionView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <StackLayout Orientation="Vertical">
+                                                            <StackLayout Orientation="Horizontal" Spacing="6">
+                                                                <StackLayout.GestureRecognizers>
+                                                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.CompleteItemCommand}" CommandParameter="{Binding .}" />
+                                                                </StackLayout.GestureRecognizers>
+                                                                <Label
+                                                                    FontAttributes="None"
+                                                                    FontFamily="RobotoCondensedRegular"
+                                                                    FontSize="15"
+                                                                    Text="{Binding Quantity}"
+                                                                    TextColor="Black" />
+                                                                <Label
+                                                                    FontAttributes="None"
+                                                                    FontFamily="RobotoCondensedRegular"
+                                                                    FontSize="15"
+                                                                    Text="{Binding ItemName}"
+                                                                    TextColor="Black" />
+                                                                <Image
+                                                                    HeightRequest="12 "
+                                                                    IsVisible="{Binding IsCompleted}"
+                                                                    Source="green_tick_icon.png"
+                                                                    WidthRequest="12" />
 
+                                                            </StackLayout>
+                                                            <CollectionView ItemsSource="{Binding SpecialItems}">
+                                                                <CollectionView.ItemTemplate>
+                                                                    <DataTemplate>
+                                                                        <StackLayout Padding="20,0,0,0">
+                                                                            <Label
+                                                                                FontAttributes="None"
+                                                                                FontFamily="RobotoCondensedRegular"
+                                                                                FontSize="11.25"
+                                                                                Text="{Binding SpecialItemName}"
+                                                                                TextColor="#000000" />
+                                                                        </StackLayout>
+                                                                    </DataTemplate>
+                                                                </CollectionView.ItemTemplate>
+                                                            </CollectionView>
                                                         </StackLayout>
-                                                        <CollectionView ItemsSource="{Binding SpecialItems}">
-                                                            <CollectionView.ItemTemplate>
-                                                                <DataTemplate>
-                                                                    <StackLayout Padding="20,0,0,0">
-                                                                        <Label
-                                                                            FontAttributes="None"
-                                                                            FontFamily="RobotoCondensedRegular"
-                                                                            FontSize="11.25"
-                                                                            Text="{Binding SpecialItemName}"
-                                                                            TextColor="#000000" />
-                                                                    </StackLayout>
-                                                                </DataTemplate>
-                                                            </CollectionView.ItemTemplate>
-                                                        </CollectionView>
-                                                    </StackLayout>
-                                                </DataTemplate>
-                                            </CollectionView.ItemTemplate>
-                                        </CollectionView>
+                                                    </DataTemplate>
+                                                </CollectionView.ItemTemplate>
+                                            </CollectionView>
+                                        </StackLayout>
                                     </StackLayout>
-                                </StackLayout>
-                            </Frame>
-                        </StackLayout>
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
-            </FlexLayout>
-        </ScrollView>
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
 
-        <AbsoluteLayout Margin="{OnPlatform Android='0,10,0,0', iOS='0,5,0,0', Default='0'}" VerticalOptions="{OnPlatform Default='EndAndExpand', iOS='End', Android='End'}">
-            <StackLayout
-                x:Name="Footer"
-                Padding="0,0,0,0"
-                AbsoluteLayout.LayoutBounds="0, 1, AutoSize, AutoSize"
-                AbsoluteLayout.LayoutFlags="PositionProportional"
-                Orientation="{OnPlatform Default='Horizontal',
-                                         iOS='Vertical',
-                                         Android='Vertical'}"
-                Spacing="{OnPlatform Default=130,
-                                     iOS=10,
-                                     Android=10}">
 
-                <!--  Kitchen Label  -->
-                <Label
-                    FontAttributes="None"
-                    FontFamily="RobotoCondensedRegular"
-                    FontSize="18.75"
-                    HorizontalTextAlignment="Start"
-                    Text="Kitchen"
-                    TextColor="#FFFFFF"
-                    VerticalOptions="End" />
-
-                <!--  Stack for Exceeding Cooking Time, Select Item, and Double Click Labels  -->
-                <StackLayout Orientation="{OnPlatform Default='Horizontal', iOS='Vertical', Android='Vertical'}" Spacing="{OnPlatform Default=91.5, iOS=10, Android=10}">
-
-                    <!--  Exceeding Cooking Time Label  -->
+            </Grid>
+            <Grid
+                Grid.Row="1"
+                Margin="{OnPlatform Android='0,0,0,0',
+                                    iOS='0,0,0,0',
+                                    Default='0'}"
+                ColumnSpacing="65"
+                VerticalOptions="{OnPlatform Default='EndAndExpand',
+                                             iOS='End',
+                                             Android='End'}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" Margin="0,0,0,0">
+                    <!--  Kitchen Label  -->
                     <Label
-                        Padding="2"
-                        BackgroundColor="#943F3F"
+                        Grid.Column="0"
                         FontAttributes="None"
                         FontFamily="RobotoCondensedRegular"
                         FontSize="18.75"
                         HorizontalTextAlignment="Start"
-                        Text="Exceeding Cooking Time"
+                        Text="Kitchen"
                         TextColor="#FFFFFF"
                         VerticalOptions="End" />
-
-                    <!--  Select Item Label  -->
-                    <Label
-                        Padding="2"
-                        BackgroundColor="#16BC11"
-                        FontAttributes="None"
-                        FontFamily="RobotoCondensedRegular"
-                        FontSize="18.75"
-                        HorizontalTextAlignment="Start"
-                        Text="Select item when Prepared"
-                        TextColor="#FFFFFF"
-                        VerticalOptions="End" />
-
-                    <!--  Double Click Header Label  -->
-                    <Label
-                        Padding="2"
-                        BackgroundColor="#ACB8B4"
-                        FontAttributes="None"
-                        FontFamily="RobotoCondensedRegular"
-                        FontSize="18.75"
-                        HorizontalTextAlignment="Start"
-                        Text="Double Click header when Done"
-                        VerticalOptions="End" />
-
-                    <!--  Current DateTime Label  -->
-                    <Label
-                        Padding="2"
-                        FontAttributes="None"
-                        FontFamily="RobotoCondensedRegular"
-                        FontSize="15"
-                        HorizontalTextAlignment="Start"
-                        Text="{Binding CurrentDateTime, StringFormat='{}{0:HH:mm:ss}    {0:MM/dd/yyyy}'}"
-                        TextColor="#C7C7C7"
-                        VerticalOptions="End" />
-                </StackLayout>
-            </StackLayout>
-
-            <StackLayout
-                AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize"
-                AbsoluteLayout.LayoutFlags="PositionProportional"
-                Orientation="Vertical">
-
-                <!--  First Row: Show All Day Tickets and Undo  -->
+                </Grid>
                 <Grid
-                    Padding="0,4,0,0"
-                    ColumnSpacing="4"
-                    RowSpacing="4">
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="4"
+                    Margin="0,0,0,0"
+                    ColumnSpacing="30"
+                    HorizontalOptions="CenterAndExpand">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-
-                    <Button
-                        Grid.Column="0"
-                        Padding="2"
-                        BackgroundColor="#AAAAAA"
-                        Command="{Binding ShowAllTicketsCommand}"
-                        CornerRadius="8"
-                        FontFamily="InterSemiBold"
-                        FontSize="15"
-                        HeightRequest="63.8"
-                        HorizontalOptions="FillAndExpand"
-                        LineBreakMode="WordWrap"
-                        Text="Show All Day Tickets"
-                        TextColor="White"
-                        VerticalOptions="Center"
-                        WidthRequest="82.5" />
-
-                    <Button
-                        Grid.Column="1"
-                        BackgroundColor="#AAAAAA"
-                        Command="{Binding UndoCommand}"
-                        CornerRadius="8"
-                        FontFamily="InterSemiBold"
-                        FontSize="15"
-                        HeightRequest="63.8"
-                        HorizontalOptions="FillAndExpand"
-                        Text="Undo"
-                        TextColor="White"
-                        WidthRequest="82.5" />
+                    <Grid Grid.Column="0" Padding="0,0,0,0">
+                        <Label
+                            Padding="2"
+                            BackgroundColor="#943F3F"
+                            FontAttributes="None"
+                            FontFamily="RobotoCondensedRegular"
+                            FontSize="18.75"
+                            HorizontalTextAlignment="Start"
+                            Text="Exceeding Cooking Time"
+                            TextColor="#FFFFFF"
+                            VerticalOptions="End" />
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Label
+                            Grid.Column="3"
+                            Padding="2"
+                            BackgroundColor="#16BC11"
+                            FontAttributes="None"
+                            FontFamily="RobotoCondensedRegular"
+                            FontSize="18.75"
+                            HorizontalTextAlignment="Start"
+                            Text="Select item when Prepared"
+                            TextColor="#FFFFFF"
+                            VerticalOptions="End" />
+                    </Grid>
+                    <Grid Grid.Column="2">
+                        <!--  Double Click Header Label  -->
+                        <Label
+                            Padding="2"
+                            BackgroundColor="#ACB8B4"
+                            FontAttributes="None"
+                            FontFamily="RobotoCondensedRegular"
+                            FontSize="18.75"
+                            HorizontalTextAlignment="Start"
+                            Text="Double Click header when Done"
+                            VerticalOptions="End" />
+                    </Grid>
+                    <Grid Grid.Column="3">
+                        <!--  Current DateTime Label  -->
+                        <Label
+                            Padding="2"
+                            FontAttributes="None"
+                            FontFamily="RobotoCondensedRegular"
+                            FontSize="15"
+                            HorizontalTextAlignment="Start"
+                            Text="{Binding CurrentDateTime, StringFormat='{}{0:HH:mm:ss}    {0:MM/dd/yyyy}'}"
+                            TextColor="#C7C7C7"
+                            VerticalOptions="End" />
+                    </Grid>
                 </Grid>
 
-                <!--  Second Row: Back and Forward  -->
-                <Grid
-                    Padding="0,4,0,0"
-                    ColumnSpacing="4"
-                    RowSpacing="4">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+            </Grid>
+            <Grid
+                Grid.Row="1"
+                Grid.Column="3"
+                ColumnSpacing="10"
+                HorizontalOptions="End"
+                RowSpacing="10"
+                VerticalOptions="End">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Padding="2"
+                    BackgroundColor="#AAAAAA"
+                    Command="{Binding ShowAllTicketsCommand}"
+                    CornerRadius="8"
+                    FontFamily="InterSemiBold"
+                    FontSize="15"
+                    HeightRequest="63.8"
+                    HorizontalOptions="FillAndExpand"
+                    LineBreakMode="WordWrap"
+                    Text="Show All Day Tickets"
+                    TextColor="White"
+                    VerticalOptions="Center"
+                    WidthRequest="82.5" />
 
-                    <ImageButton
-                        Grid.Column="0"
-                        BackgroundColor="#AAAAAA"
-                        Command="{Binding PreviousPage}"
-                        CornerRadius="8"
-                        HeightRequest="63.8"
-                        HorizontalOptions="FillAndExpand"
-                        Source="backward_arrow.png"
-                        WidthRequest="82.5" />
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    BackgroundColor="#AAAAAA"
+                    Command="{Binding UndoCommand}"
+                    CornerRadius="8"
+                    FontFamily="InterSemiBold"
+                    FontSize="15"
+                    HeightRequest="63.8"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Undo"
+                    TextColor="White"
+                    WidthRequest="82.5" />
+                <ImageButton
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    BackgroundColor="#AAAAAA"
+                    Command="{Binding PreviousPage}"
+                    CornerRadius="8"
+                    HeightRequest="63.8"
+                    HorizontalOptions="FillAndExpand"
+                    Source="backward_arrow.png"
+                    WidthRequest="82.5" />
 
-                    <ImageButton
-                        Grid.Column="1"
-                        BackgroundColor="#AAAAAA"
-                        Command="{Binding NextPage}"
-                        CornerRadius="8"
-                        HeightRequest="63.8"
-                        HorizontalOptions="FillAndExpand"
-                        Source="forward_arrow.png"
-                        WidthRequest="82.5" />
-                </Grid>
-            </StackLayout>
-        </AbsoluteLayout>
+                <ImageButton
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    BackgroundColor="#AAAAAA"
+                    Command="{Binding NextPage}"
+                    CornerRadius="8"
+                    HeightRequest="63.8"
+                    HorizontalOptions="FillAndExpand"
+                    Source="forward_arrow.png"
+                    WidthRequest="82.5" />
+            </Grid>
 
-    </StackLayout>
+        </Grid>
+    </Grid>
 
 </ContentPage>
