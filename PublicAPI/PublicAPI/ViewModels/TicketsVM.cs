@@ -17,6 +17,7 @@ namespace PublicAPI.ViewModels
         private Stack<UndoAction> undoStack = new Stack<UndoAction>();
         private System.Timers.Timer timer;
         private DateTime _currentDateTime;
+        private double screenWidth;
 
         #endregion
 
@@ -25,14 +26,20 @@ namespace PublicAPI.ViewModels
         public Command<Ticket> CompleteTicketCommand { get; }
         public Command<Items> CompleteItemCommand { get; }
         public ICommand UndoCommand { get; private set; }
+        public ICommand NextPageCommand { get; private set; }
+        public ICommand PreviousPageCommand { get; private set; }
         public ICommand ShowAllTicketsCommand => new Command(ShowAllTickets);
 
         #endregion
 
         #region Properties
 
-        public ObservableCollection<Ticket> Tickets { get; set; }
+        public ObservableCollection<Ticket> Tickets { get; set; } = new ObservableCollection<Ticket>();
+        public ObservableCollection<Ticket> PagedTickets { get; set; } = new ObservableCollection<Ticket>();
         public int OriginalIndex { get; set; }
+
+        private int currentPage;
+        private int totalPages;
 
         public DateTime CurrentDateTime
         {
@@ -43,7 +50,21 @@ namespace PublicAPI.ViewModels
                 {
                     _currentDateTime = value;
                     RefreshTicketStatuses();
-                    OnPropertyChanged(); // Notify that CurrentDateTime has changed
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public int CurrentPage
+        {
+            get => currentPage;
+            set
+            {
+                if (currentPage != value)
+                {
+                    currentPage = value;
+                    OnPropertyChanged();
+                    UpdatePagedTickets();
                 }
             }
         }
@@ -3286,19 +3307,23 @@ namespace PublicAPI.ViewModels
      },
 
  };
+
             foreach (var ticket in Tickets)
             {
                 ticket.ItemNumber = ticket.Items.Count;
             }
 
+
             timer = new System.Timers.Timer(1000);
             timer.Elapsed += TimerElapsed;
             timer.AutoReset = true;
             timer.Start();
-
+            CurrentPage = 1;
             CompleteTicketCommand = new Command<Ticket>(CompleteTicket);
             CompleteItemCommand = new Command<Items>(CompleteItem);
             UndoCommand = new Command(UndoLastAction);
+            NextPageCommand = new Command(NextPage);
+            PreviousPageCommand = new Command(PreviousPage);
         }
 
         #endregion
@@ -3307,10 +3332,9 @@ namespace PublicAPI.ViewModels
 
         private void TimerElapsed(object sender, ElapsedEventArgs e)
         {
-            // Update CurrentDateTime on the UI thread
             Application.Current.Dispatcher.Dispatch(() =>
             {
-                CurrentDateTime = DateTime.Now; // Update to current time
+                CurrentDateTime = DateTime.Now;
             });
         }
 
@@ -3333,20 +3357,19 @@ namespace PublicAPI.ViewModels
         {
             if (ticket != null)
             {
-                int index = Tickets.IndexOf(ticket); // Get the current index
+                int index = Tickets.IndexOf(ticket);
 
-                // Mark the ticket as completed
                 ticket.IsCompleted = true;
 
-                // Push the current action to the undo stack with the index
                 undoStack.Push(new UndoAction
                 {
                     Type = ActionType.CompleteTicket,
                     Ticket = ticket,
-                    OriginalIndex = index // Store the index
+                    OriginalIndex = index 
                 });
 
                 Tickets.Remove(ticket);
+                UpdatePagedTickets();
             }
         }
 
@@ -3374,8 +3397,7 @@ namespace PublicAPI.ViewModels
                     case ActionType.CompleteTicket:
                         lastAction.Ticket.IsCompleted = false;
 
-                        // Insert the ticket back at the original index
-                        Tickets.Insert(lastAction.OriginalIndex, lastAction.Ticket); // Use Insert instead of Add
+                        Tickets.Insert(lastAction.OriginalIndex, lastAction.Ticket);
                         break;
 
                     case ActionType.CompleteItem:
@@ -3383,20 +3405,56 @@ namespace PublicAPI.ViewModels
                         break;
                 }
 
-                OnPropertyChanged(nameof(Tickets)); // You can also omit this line if using ObservableCollection
+                UpdatePagedTickets();
+                OnPropertyChanged(nameof(Tickets));
             }
+        }
+
+        private const int TicketWidth = 168; 
+
+        private void UpdatePagedTickets()
+        {
+            PagedTickets.Clear();
+            int ticketsPerRow = (int)(screenWidth / TicketWidth);
+            totalPages = (int)Math.Ceiling((double)Tickets.Count / ticketsPerRow);
+
+            int startIndex = (CurrentPage - 1) * ticketsPerRow;
+            int endIndex = Math.Min(startIndex + ticketsPerRow, Tickets.Count);
+
+            for (int i = startIndex; i < endIndex; i++)
+            {
+                PagedTickets.Add(Tickets[i]);
+            }
+        }
+
+        public void SetScreenWidth(double width)
+        {
+            screenWidth = width;
+            UpdatePagedTickets(); 
+        }
+
+        public void NextPage()
+        {
+            if (CurrentPage < totalPages)
+                CurrentPage++;
+        }
+
+        public void PreviousPage()
+        {
+            if (CurrentPage > 1)
+                CurrentPage--;
         }
 
         #endregion
 
         #region INotifyPropertyChanged Implementation
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 

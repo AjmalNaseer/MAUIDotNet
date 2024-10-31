@@ -24,7 +24,7 @@
                     AlignItems="{OnPlatform iOS=Center,
                                             Android=Center,
                                             WinUI=Start}"
-                    BindableLayout.ItemsSource="{Binding Tickets}"
+                    BindableLayout.ItemsSource="{Binding PagedTickets}"
                     Direction="{OnPlatform WinUI=Column,
                                            Default=Column}"
                     HorizontalOptions="StartAndExpand"
@@ -39,7 +39,8 @@
                             <Grid
                                 x:Name="TicketFrame"
                                 Padding="0"
-                                VerticalOptions="FillAndExpand">
+                                HeightRequest="-1"
+                                VerticalOptions="StartAndExpand">
                                 <Frame
                                     Margin="0,15,15,0"
                                     Padding="0"
@@ -47,10 +48,7 @@
                                     CornerRadius="0"
                                     HasShadow="True"
                                     VerticalOptions="FillAndExpand"
-                                    WidthRequest="{OnPlatform iOS=250,
-                                                              Android=300,
-                                                              WinUI=168}">
-
+                                    WidthRequest="168">
                                     <StackLayout Padding="0">
                                         <StackLayout
                                             x:Name="TickerHeader"
@@ -419,7 +417,7 @@
                     Grid.Row="1"
                     Grid.Column="0"
                     BackgroundColor="#AAAAAA"
-                    Command="{Binding PreviousPage}"
+                    Command="{Binding PreviousPageCommand}"
                     CornerRadius="8"
                     HeightRequest="63.8"
                     HorizontalOptions="FillAndExpand"
@@ -430,7 +428,7 @@
                     Grid.Row="1"
                     Grid.Column="1"
                     BackgroundColor="#AAAAAA"
-                    Command="{Binding NextPage}"
+                    Command="{Binding NextPageCommand}"
                     CornerRadius="8"
                     HeightRequest="63.8"
                     HorizontalOptions="FillAndExpand"
