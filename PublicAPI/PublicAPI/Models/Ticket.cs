@@ -30,7 +30,7 @@ namespace PublicAPI.Models
                 }
             }
         }
-        private bool _isTimeExceeded; // New property to track if time exceeded
+        private bool _isTimeExceeded;
         public bool IsTimeExceeded
         {
             get => _isTimeExceeded;
@@ -49,7 +49,6 @@ namespace PublicAPI.Models
             // Update the IsTimeExceeded property based on the OrderDateTime and current time
             IsTimeExceeded = !IsCompleted && OrderDateTime < currentDateTime;
         }
-
 
 
         protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)

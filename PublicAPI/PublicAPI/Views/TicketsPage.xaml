@@ -12,12 +12,12 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+
         <Grid
             Padding="0"
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand">
             <Grid Grid.Row="0" Padding="0">
-
                 <FlexLayout
                     x:Name="FlexContainer"
                     Margin="0,0,0,0"
@@ -52,14 +52,17 @@
                                     iOS='0,0,0,0',
                                     Default='0'}"
                 Padding="0"
-                ColumnSpacing="62"
+                ColumnSpacing="40"
                 VerticalOptions="{OnPlatform Default='EndAndExpand',
                                              iOS='End',
                                              Android='End'}">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid
                     Grid.Column="0"
@@ -77,80 +80,65 @@
                         VerticalOptions="End" />
                 </Grid>
                 <Grid
-                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="0"
+                    Padding="0">
+                    <Label
+                        Padding="2"
+                        BackgroundColor="#943F3F"
+                        FontAttributes="None"
+                        FontFamily="RobotoCondensedRegular"
+                        FontSize="18.75"
+                        HorizontalTextAlignment="Start"
+                        Text="Exceeding Cooking Time"
+                        TextColor="#FFFFFF"
+                        VerticalOptions="End" />
+                </Grid>
+                <Grid
                     Grid.Column="2"
-                    Grid.ColumnSpan="4"
-                    Margin="0,0,0,0"
-                    Padding="0"
-                    ColumnSpacing="40"
-                    HorizontalOptions="CenterAndExpand">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <Grid
-                        Grid.Column="0"
-                        Margin="0"
-                        Padding="0">
-                        <Label
-                            Padding="2"
-                            BackgroundColor="#943F3F"
-                            FontAttributes="None"
-                            FontFamily="RobotoCondensedRegular"
-                            FontSize="18.75"
-                            HorizontalTextAlignment="Start"
-                            Text="Exceeding Cooking Time"
-                            TextColor="#FFFFFF"
-                            VerticalOptions="End" />
-                    </Grid>
-                    <Grid
-                        Grid.Column="1"
-                        Margin="0"
-                        Padding="0">
-                        <Label
-                            Grid.Column="3"
-                            Padding="2"
-                            BackgroundColor="#16BC11"
-                            FontAttributes="None"
-                            FontFamily="RobotoCondensedRegular"
-                            FontSize="18.75"
-                            HorizontalTextAlignment="Start"
-                            Text="Select item when Prepared"
-                            TextColor="#FFFFFF"
-                            VerticalOptions="End" />
-                    </Grid>
-                    <Grid
-                        Grid.Column="2"
-                        Margin="0"
-                        Padding="0">
-                        <!--  Double Click Header Label  -->
-                        <Label
-                            Padding="2"
-                            BackgroundColor="#ACB8B4"
-                            FontAttributes="None"
-                            FontFamily="RobotoCondensedRegular"
-                            FontSize="18.75"
-                            HorizontalTextAlignment="Start"
-                            Text="Double Click header when Done"
-                            VerticalOptions="End" />
-                    </Grid>
-                    <Grid
+                    Margin="0"
+                    Padding="0">
+                    <Label
                         Grid.Column="3"
-                        Margin="0"
-                        Padding="0">
-                        <!--  Current DateTime Label  -->
-                        <Label
-                            Padding="2"
-                            FontAttributes="None"
-                            FontFamily="RobotoCondensedRegular"
-                            FontSize="15"
-                            HorizontalTextAlignment="Start"
-                            Text="{Binding CurrentDateTime, StringFormat='{}{0:HH:mm:ss}    {0:MM/dd/yyyy}'}"
-                            TextColor="#C7C7C7"
-                            VerticalOptions="End" />
-                    </Grid>
+                        Padding="2"
+                        BackgroundColor="#16BC11"
+                        FontAttributes="None"
+                        FontFamily="RobotoCondensedRegular"
+                        FontSize="18.75"
+                        HorizontalTextAlignment="Start"
+                        Text="Select item when Prepared"
+                        TextColor="#FFFFFF"
+                        VerticalOptions="End" />
+                </Grid>
+                <Grid
+                    Grid.Column="3"
+                    Margin="0"
+                    Padding="0">
+                    <!--  Double Click Header Label  -->
+                    <Label
+                        Padding="2"
+                        BackgroundColor="#ACB8B4"
+                        FontAttributes="None"
+                        FontFamily="RobotoCondensedRegular"
+                        FontSize="18.75"
+                        HorizontalTextAlignment="Start"
+                        Text="Double Click header when Done"
+                        VerticalOptions="End" />
+                </Grid>
+                <Grid
+                    Grid.Column="4"
+                    Margin="0"
+                    Padding="0">
+                    <!--  Current DateTime Label  -->
+                    <Label
+                        Padding="2"
+                        FontAttributes="None"
+                        FontFamily="RobotoCondensedRegular"
+                        FontSize="15"
+                        HorizontalTextAlignment="Start"
+                        Text="{Binding CurrentDateTime, StringFormat='{}{0:HH:mm:ss}    {0:MM/dd/yyyy}'}"
+                        TextColor="#C7C7C7"
+                        VerticalOptions="End" />
                 </Grid>
 
             </Grid>
@@ -224,6 +212,19 @@
                     WidthRequest="82.5" />
             </Grid>
 
+        </Grid>
+        <Grid
+            BackgroundColor="#000000AA"
+            HorizontalOptions="FillAndExpand"
+            IsVisible="{Binding IsLoading}"
+            VerticalOptions="FillAndExpand">
+            <ActivityIndicator
+                HeightRequest="100"
+                HorizontalOptions="Center"
+                IsRunning="{Binding IsLoading}"
+                VerticalOptions="Center"
+                WidthRequest="100"
+                Color="Orange" />
         </Grid>
     </Grid>
 

@@ -81,6 +81,17 @@ namespace PublicAPI.ViewModels
                 }
             }
         }
+        private bool _isLoading;
+
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set
+            {
+                _isLoading = value;
+                OnPropertyChanged();
+            }
+        }
 
         #endregion
 
@@ -89,7 +100,12 @@ namespace PublicAPI.ViewModels
         public TicketsVM()
         {
             CurrentDateTime = DateTime.Now;
-            Tickets = new ObservableCollection<Ticket>
+
+            try
+            {
+                IsLoading = true;
+
+                Tickets = new ObservableCollection<Ticket>
  {
      new Ticket
      {
@@ -675,7 +691,7 @@ namespace PublicAPI.ViewModels
       new Ticket
      {
          TicketNumber = "128",
-         TableNumber = 6,
+         TableNumber = 22,
          WaiterName = "Jane Smith",
          OrderDateTime = DateTime.Now.AddMinutes(20),
          Items = new List<Items>
@@ -701,7 +717,7 @@ namespace PublicAPI.ViewModels
      new Ticket
      {
          TicketNumber = "129",
-         TableNumber = 7,
+         TableNumber = 23,
          WaiterName = "Jane Smith",
          OrderDateTime = DateTime.Now.AddMinutes(-20),
         Items = new List<Items>
@@ -731,7 +747,448 @@ namespace PublicAPI.ViewModels
      new Ticket
      {
          TicketNumber = "118",
-         TableNumber = 8,
+         TableNumber = 24,
+         WaiterName = "Jane Smith",
+         OrderDateTime = DateTime.Now.AddMinutes(20),
+         Items = new List<Items>
+         {
+             new Items { ItemName = "Chk Enchilada", Quantity = 1 },
+             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
+                 SpecialItems = new List<SpecialItems>
+                 {
+                     new SpecialItems { SpecialItemName = "Fajita Beef" },
+                     new SpecialItems { SpecialItemName = "No Sour Cream" }
+                 }
+             },
+             new Items { ItemName = "TEA", Quantity = 1 },
+             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
+             new Items { ItemName = "RITA JUM HH", Quantity = 1 },
+             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
+                 SpecialItems = new List<SpecialItems>
+                 {
+                     new SpecialItems { SpecialItemName = "Fajita Beef" }
+                 }
+             },
+             new Items { ItemName = "Chk Fajita", Quantity = 3 },
+             new Items { ItemName = "Cheese Puff", Quantity = 5 },
+             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
+         }
+     },
+     new Ticket
+     {
+         TicketNumber = "138",
+         TableNumber = 25,
+         WaiterName = "Jane Smith",
+         OrderDateTime = DateTime.Now.AddMinutes(20),
+         Items = new List<Items>
+         {
+             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
+             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
+                 SpecialItems = new List<SpecialItems>
+                 {
+                     new SpecialItems { SpecialItemName = "Fajita Beef" },
+                     new SpecialItems { SpecialItemName = "No Sour Cream" }
+                 }
+             },
+             new Items { ItemName = "TEA", Quantity = 1 },
+             new Items { ItemName = "TEA", Quantity = 1 },
+             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
+
+         }
+     },
+     new Ticket
+     {
+         TicketNumber = "148",
+         TableNumber = 26,
+         WaiterName = "Jane Smith",
+         OrderDateTime = DateTime.Now.AddMinutes(20),
+         Items = new List<Items>
+         {
+             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
+             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
+                 SpecialItems = new List<SpecialItems>
+                 {
+                     new SpecialItems { SpecialItemName = "Fajita Beef" },
+                     new SpecialItems { SpecialItemName = "No Sour Cream" }
+                 }
+             },
+             new Items { ItemName = "TEA", Quantity = 1 },
+             new Items { ItemName = "TEA", Quantity = 1 },
+             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
+             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
+             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
+                 SpecialItems = new List<SpecialItems>
+                 {
+                     new SpecialItems { SpecialItemName = "Fajita Beef" },
+                 }
+             },
+         }
+     },
+     new Ticket
+     {
+         TicketNumber = "18",
+         TableNumber = 27,
+         WaiterName = "Jane Smith",
+         OrderDateTime = DateTime.Now.AddMinutes(20),
+         Items = new List<Items>
+         {
+             new Items { ItemName = "Chk Enchilada", Quantity = 1 },
+             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
+                 SpecialItems = new List<SpecialItems>
+                 {
+                     new SpecialItems { SpecialItemName = "Fajita Beef" },
+                     new SpecialItems { SpecialItemName = "No Sour Cream" }
+                 }
+             },
+             new Items { ItemName = "TEA", Quantity = 1 },
+             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
+             new Items { ItemName = "RITA JUM HH", Quantity = 1 },
+             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
+                 SpecialItems = new List<SpecialItems>
+                 {
+                     new SpecialItems { SpecialItemName = "Fajita Beef" }
+                 }
+             },
+             new Items { ItemName = "Chk Fajita", Quantity = 3 },
+             new Items { ItemName = "Cheese Puff", Quantity = 5 },
+             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
+         }
+     },
+     new Ticket
+     {
+         TicketNumber = "131",
+         TableNumber = 28,
+         WaiterName = "Jane Smith",
+         OrderDateTime = DateTime.Now.AddMinutes(20),
+         Items = new List<Items>
+         {
+             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
+             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
+                 SpecialItems = new List<SpecialItems>
+                 {
+                     new SpecialItems { SpecialItemName = "Fajita Beef" },
+                     new SpecialItems { SpecialItemName = "No Sour Cream" }
+                 }
+             },
+             new Items { ItemName = "TEA", Quantity = 1 },
+             new Items { ItemName = "TEA", Quantity = 1 },
+             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
+             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
+             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
+             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
+             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
+             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
+         }
+     },
+     new Ticket
+     {
+         TicketNumber = "132",
+         TableNumber = 29,
+         WaiterName = "Jane Smith",
+         OrderDateTime = DateTime.Now.AddMinutes(-20),
+          Items = new List<Items>
+         {
+             new Items { ItemName = "Chk Enchilada", Quantity = 1 },
+             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
+                 SpecialItems = new List<SpecialItems>
+                 {
+                     new SpecialItems { SpecialItemName = "Fajita Beef" },
+                     new SpecialItems { SpecialItemName = "No Sour Cream" }
+                 }
+             },
+             new Items { ItemName = "TEA", Quantity = 1 },
+             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
+             new Items { ItemName = "RITA JUM HH", Quantity = 1 },
+             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
+                 SpecialItems = new List<SpecialItems>
+                 {
+                     new SpecialItems { SpecialItemName = "Fajita Beef" }
+                 }
+             },
+             new Items { ItemName = "Chk Fajita", Quantity = 3 },
+             new Items { ItemName = "Cheese Puff", Quantity = 5 },
+             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
+         }
+     },
+     new Ticket
+     {
+         TicketNumber = "133",
+         TableNumber = 30,
+         WaiterName = "Jane Smith",
+         OrderDateTime = DateTime.Now.AddMinutes(20),
+         Items = new List<Items>
+         {
+             new Items { ItemName = "Chk Enchilada", Quantity = 1 },
+             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
+                 SpecialItems = new List<SpecialItems>
+                 {
+                     new SpecialItems { SpecialItemName = "Fajita Beef" },
+                     new SpecialItems { SpecialItemName = "No Sour Cream" }
+                 }
+             },
+             new Items { ItemName = "TEA", Quantity = 1 },
+             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
+             new Items { ItemName = "RITA JUM HH", Quantity = 1 },
+             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
+                 SpecialItems = new List<SpecialItems>
+                 {
+                     new SpecialItems { SpecialItemName = "Fajita Beef" }
+                 }
+             },
+             new Items { ItemName = "Chk Fajita", Quantity = 3 },
+             new Items { ItemName = "Cheese Puff", Quantity = 5 },
+             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
+         }
+     },
+     new Ticket
+     {
+         TicketNumber = "135",
+         TableNumber = 31,
+         WaiterName = "Jane Smith",
+         OrderDateTime = DateTime.Now.AddMinutes(20),
+         Items = new List<Items>
+         {
+             new Items { ItemName = "Chk Enchilada", Quantity = 1 },
+             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
+                 SpecialItems = new List<SpecialItems>
+                 {
+                     new SpecialItems { SpecialItemName = "Fajita Beef" },
+                     new SpecialItems { SpecialItemName = "No Sour Cream" }
+                 }
+             },
+             new Items { ItemName = "TEA", Quantity = 1 },
+             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
+         }
+     },
+     new Ticket
+     {
+         TicketNumber = "136",
+         TableNumber = 32,
+         WaiterName = "Jane Smith",
+         OrderDateTime = DateTime.Now.AddMinutes(20),
+         Items = new List<Items>
+         {
+             new Items { ItemName = "Chk Enchilada", Quantity = 1 },
+             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
+                 SpecialItems = new List<SpecialItems>
+                 {
+                     new SpecialItems { SpecialItemName = "Fajita Beef" },
+                     new SpecialItems { SpecialItemName = "No Sour Cream" }
+                 }
+             },
+             new Items { ItemName = "TEA", Quantity = 1 },
+             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
+             new Items { ItemName = "RITA JUM HH", Quantity = 1 },
+             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
+                 SpecialItems = new List<SpecialItems>
+                 {
+                     new SpecialItems { SpecialItemName = "Fajita Beef" }
+                 }
+             },
+
+         }
+     },
+     new Ticket
+     {
+         TicketNumber = "137",
+         TableNumber = 33,
+         WaiterName = "Jane Smith",
+         OrderDateTime = DateTime.Now.AddMinutes(20),
+         Items = new List<Items>
+         {
+             new Items { ItemName = "Chk Enchilada", Quantity = 1 },
+             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
+                 SpecialItems = new List<SpecialItems>
+                 {
+                     new SpecialItems { SpecialItemName = "Fajita Beef" },
+                     new SpecialItems { SpecialItemName = "No Sour Cream" }
+                 }
+             },
+             new Items { ItemName = "TEA", Quantity = 1 },
+             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
+             new Items { ItemName = "RITA JUM HH", Quantity = 1 },
+             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
+                 SpecialItems = new List<SpecialItems>
+                 {
+                     new SpecialItems { SpecialItemName = "Fajita Beef" }
+                 }
+             },
+             new Items { ItemName = "Chk Fajita", Quantity = 3 },
+             new Items { ItemName = "Cheese Puff", Quantity = 5 },
+             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
+         }
+     },
+     new Ticket
+     {
+         TicketNumber = "138",
+         TableNumber = 34,
+         WaiterName = "Jane Smith",
+         OrderDateTime = DateTime.Now.AddMinutes(20),
+         Items = new List<Items>
+         {
+             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
+             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
+                 SpecialItems = new List<SpecialItems>
+                 {
+                     new SpecialItems { SpecialItemName = "Fajita Beef" },
+                     new SpecialItems { SpecialItemName = "No Sour Cream" }
+                 }
+             },
+             new Items { ItemName = "TEA", Quantity = 1 },
+             new Items { ItemName = "TEA", Quantity = 1 },
+             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
+             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
+             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
+             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
+             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
+             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
+         }
+     },
+     new Ticket
+     {
+         TicketNumber = "139",
+         TableNumber = 35,
+         WaiterName = "Jane Smith",
+         OrderDateTime = DateTime.Now.AddMinutes(20),
+         Items = new List<Items>
+         {
+             new Items { ItemName = "Chk Enchilada", Quantity = 1 },
+             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
+                 SpecialItems = new List<SpecialItems>
+                 {
+                     new SpecialItems { SpecialItemName = "Fajita Beef" },
+                     new SpecialItems { SpecialItemName = "No Sour Cream" }
+                 }
+             },
+             new Items { ItemName = "TEA", Quantity = 1 },
+             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
+             new Items { ItemName = "RITA JUM HH", Quantity = 1 },
+             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
+                 SpecialItems = new List<SpecialItems>
+                 {
+                     new SpecialItems { SpecialItemName = "Fajita Beef" }
+                 }
+             },
+
+         }
+     },
+     new Ticket
+     {
+         TicketNumber = "140",
+         TableNumber = 36,
+         WaiterName = "Jane Smith",
+         OrderDateTime = DateTime.Now.AddMinutes(20),
+         Items = new List<Items>
+         {
+             new Items { ItemName = "Chk Enchilada", Quantity = 1 },
+             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
+                 SpecialItems = new List<SpecialItems>
+                 {
+                     new SpecialItems { SpecialItemName = "Fajita Beef" },
+                     new SpecialItems { SpecialItemName = "No Sour Cream" }
+                 }
+             },
+             new Items { ItemName = "TEA", Quantity = 1 },
+             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
+             new Items { ItemName = "RITA JUM HH", Quantity = 1 },
+             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
+                 SpecialItems = new List<SpecialItems>
+                 {
+                     new SpecialItems { SpecialItemName = "Fajita Beef" }
+                 }
+             },
+
+         }
+     },
+     new Ticket
+     {
+         TicketNumber = "142",
+         TableNumber = 37,
+         WaiterName = "Jane Smith",
+         OrderDateTime = DateTime.Now.AddMinutes(20),
+         Items = new List<Items>
+         {
+             new Items { ItemName = "Chk Enchilada", Quantity = 1 },
+             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
+                 SpecialItems = new List<SpecialItems>
+                 {
+                     new SpecialItems { SpecialItemName = "Fajita Beef" },
+                     new SpecialItems { SpecialItemName = "No Sour Cream" }
+                 }
+             },
+             new Items { ItemName = "TEA", Quantity = 1 },
+             new Items { ItemName = "RITA JUM HH", Quantity = 1 },
+              new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
+                 SpecialItems = new List<SpecialItems>
+                 {
+                     new SpecialItems { SpecialItemName = "Fajita Beef" },
+                     new SpecialItems { SpecialItemName = "Extra Cream" }
+                 }
+             },
+             new Items { ItemName = "Tea", Quantity = 3 },
+
+         }
+     },
+      new Ticket
+     {
+         TicketNumber = "128",
+         TableNumber = 38,
+         WaiterName = "Jane Smith",
+         OrderDateTime = DateTime.Now.AddMinutes(20),
+         Items = new List<Items>
+         {
+             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
+             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
+                 SpecialItems = new List<SpecialItems>
+                 {
+                     new SpecialItems { SpecialItemName = "Fajita Beef" },
+                     new SpecialItems { SpecialItemName = "No Sour Cream" }
+                 }
+             },
+             new Items { ItemName = "TEA", Quantity = 1 },
+             new Items { ItemName = "TEA", Quantity = 1 },
+             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
+             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
+             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
+             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
+             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
+             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
+         }
+     },
+     new Ticket
+     {
+         TicketNumber = "129",
+         TableNumber = 39,
+         WaiterName = "Jane Smith",
+         OrderDateTime = DateTime.Now.AddMinutes(-20),
+        Items = new List<Items>
+         {
+             new Items { ItemName = "Chk Enchilada", Quantity = 1 },
+             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
+                 SpecialItems = new List<SpecialItems>
+                 {
+                     new SpecialItems { SpecialItemName = "Fajita Beef" },
+                     new SpecialItems { SpecialItemName = "No Sour Cream" }
+                 }
+             },
+             new Items { ItemName = "TEA", Quantity = 1 },
+             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
+             new Items { ItemName = "RITA JUM HH", Quantity = 1 },
+             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
+                 SpecialItems = new List<SpecialItems>
+                 {
+                     new SpecialItems { SpecialItemName = "Fajita Beef" }
+                 }
+             },
+             new Items { ItemName = "Chk Fajita", Quantity = 3 },
+             new Items { ItemName = "Cheese Puff", Quantity = 5 },
+             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
+         }
+     },
+     new Ticket
+     {
+         TicketNumber = "118",
+         TableNumber = 40,
          WaiterName = "Jane Smith",
          OrderDateTime = DateTime.Now.AddMinutes(20),
          Items = new List<Items>
@@ -1116,7 +1573,7 @@ namespace PublicAPI.ViewModels
       new Ticket
      {
          TicketNumber = "128",
-         TableNumber = 6,
+         TableNumber = 22,
          WaiterName = "Jane Smith",
          OrderDateTime = DateTime.Now.AddMinutes(20),
          Items = new List<Items>
@@ -1142,7 +1599,7 @@ namespace PublicAPI.ViewModels
      new Ticket
      {
          TicketNumber = "129",
-         TableNumber = 7,
+         TableNumber = 23,
          WaiterName = "Jane Smith",
          OrderDateTime = DateTime.Now.AddMinutes(-20),
         Items = new List<Items>
@@ -1172,448 +1629,7 @@ namespace PublicAPI.ViewModels
      new Ticket
      {
          TicketNumber = "118",
-         TableNumber = 8,
-         WaiterName = "Jane Smith",
-         OrderDateTime = DateTime.Now.AddMinutes(20),
-         Items = new List<Items>
-         {
-             new Items { ItemName = "Chk Enchilada", Quantity = 1 },
-             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
-                 SpecialItems = new List<SpecialItems>
-                 {
-                     new SpecialItems { SpecialItemName = "Fajita Beef" },
-                     new SpecialItems { SpecialItemName = "No Sour Cream" }
-                 }
-             },
-             new Items { ItemName = "TEA", Quantity = 1 },
-             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
-             new Items { ItemName = "RITA JUM HH", Quantity = 1 },
-             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
-                 SpecialItems = new List<SpecialItems>
-                 {
-                     new SpecialItems { SpecialItemName = "Fajita Beef" }
-                 }
-             },
-             new Items { ItemName = "Chk Fajita", Quantity = 3 },
-             new Items { ItemName = "Cheese Puff", Quantity = 5 },
-             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
-         }
-     },
-     new Ticket
-     {
-         TicketNumber = "138",
-         TableNumber = 9,
-         WaiterName = "Jane Smith",
-         OrderDateTime = DateTime.Now.AddMinutes(20),
-         Items = new List<Items>
-         {
-             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
-             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
-                 SpecialItems = new List<SpecialItems>
-                 {
-                     new SpecialItems { SpecialItemName = "Fajita Beef" },
-                     new SpecialItems { SpecialItemName = "No Sour Cream" }
-                 }
-             },
-             new Items { ItemName = "TEA", Quantity = 1 },
-             new Items { ItemName = "TEA", Quantity = 1 },
-             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
-
-         }
-     },
-     new Ticket
-     {
-         TicketNumber = "148",
-         TableNumber = 10,
-         WaiterName = "Jane Smith",
-         OrderDateTime = DateTime.Now.AddMinutes(20),
-         Items = new List<Items>
-         {
-             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
-             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
-                 SpecialItems = new List<SpecialItems>
-                 {
-                     new SpecialItems { SpecialItemName = "Fajita Beef" },
-                     new SpecialItems { SpecialItemName = "No Sour Cream" }
-                 }
-             },
-             new Items { ItemName = "TEA", Quantity = 1 },
-             new Items { ItemName = "TEA", Quantity = 1 },
-             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
-             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
-             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
-                 SpecialItems = new List<SpecialItems>
-                 {
-                     new SpecialItems { SpecialItemName = "Fajita Beef" },
-                 }
-             },
-         }
-     },
-     new Ticket
-     {
-         TicketNumber = "18",
-         TableNumber = 11,
-         WaiterName = "Jane Smith",
-         OrderDateTime = DateTime.Now.AddMinutes(20),
-         Items = new List<Items>
-         {
-             new Items { ItemName = "Chk Enchilada", Quantity = 1 },
-             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
-                 SpecialItems = new List<SpecialItems>
-                 {
-                     new SpecialItems { SpecialItemName = "Fajita Beef" },
-                     new SpecialItems { SpecialItemName = "No Sour Cream" }
-                 }
-             },
-             new Items { ItemName = "TEA", Quantity = 1 },
-             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
-             new Items { ItemName = "RITA JUM HH", Quantity = 1 },
-             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
-                 SpecialItems = new List<SpecialItems>
-                 {
-                     new SpecialItems { SpecialItemName = "Fajita Beef" }
-                 }
-             },
-             new Items { ItemName = "Chk Fajita", Quantity = 3 },
-             new Items { ItemName = "Cheese Puff", Quantity = 5 },
-             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
-         }
-     },
-     new Ticket
-     {
-         TicketNumber = "131",
-         TableNumber = 12,
-         WaiterName = "Jane Smith",
-         OrderDateTime = DateTime.Now.AddMinutes(20),
-         Items = new List<Items>
-         {
-             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
-             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
-                 SpecialItems = new List<SpecialItems>
-                 {
-                     new SpecialItems { SpecialItemName = "Fajita Beef" },
-                     new SpecialItems { SpecialItemName = "No Sour Cream" }
-                 }
-             },
-             new Items { ItemName = "TEA", Quantity = 1 },
-             new Items { ItemName = "TEA", Quantity = 1 },
-             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
-             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
-             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
-             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
-             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
-             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
-         }
-     },
-     new Ticket
-     {
-         TicketNumber = "132",
-         TableNumber = 13,
-         WaiterName = "Jane Smith",
-         OrderDateTime = DateTime.Now.AddMinutes(-20),
-          Items = new List<Items>
-         {
-             new Items { ItemName = "Chk Enchilada", Quantity = 1 },
-             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
-                 SpecialItems = new List<SpecialItems>
-                 {
-                     new SpecialItems { SpecialItemName = "Fajita Beef" },
-                     new SpecialItems { SpecialItemName = "No Sour Cream" }
-                 }
-             },
-             new Items { ItemName = "TEA", Quantity = 1 },
-             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
-             new Items { ItemName = "RITA JUM HH", Quantity = 1 },
-             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
-                 SpecialItems = new List<SpecialItems>
-                 {
-                     new SpecialItems { SpecialItemName = "Fajita Beef" }
-                 }
-             },
-             new Items { ItemName = "Chk Fajita", Quantity = 3 },
-             new Items { ItemName = "Cheese Puff", Quantity = 5 },
-             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
-         }
-     },
-     new Ticket
-     {
-         TicketNumber = "133",
-         TableNumber = 14,
-         WaiterName = "Jane Smith",
-         OrderDateTime = DateTime.Now.AddMinutes(20),
-         Items = new List<Items>
-         {
-             new Items { ItemName = "Chk Enchilada", Quantity = 1 },
-             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
-                 SpecialItems = new List<SpecialItems>
-                 {
-                     new SpecialItems { SpecialItemName = "Fajita Beef" },
-                     new SpecialItems { SpecialItemName = "No Sour Cream" }
-                 }
-             },
-             new Items { ItemName = "TEA", Quantity = 1 },
-             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
-             new Items { ItemName = "RITA JUM HH", Quantity = 1 },
-             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
-                 SpecialItems = new List<SpecialItems>
-                 {
-                     new SpecialItems { SpecialItemName = "Fajita Beef" }
-                 }
-             },
-             new Items { ItemName = "Chk Fajita", Quantity = 3 },
-             new Items { ItemName = "Cheese Puff", Quantity = 5 },
-             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
-         }
-     },
-     new Ticket
-     {
-         TicketNumber = "135",
-         TableNumber = 15,
-         WaiterName = "Jane Smith",
-         OrderDateTime = DateTime.Now.AddMinutes(20),
-         Items = new List<Items>
-         {
-             new Items { ItemName = "Chk Enchilada", Quantity = 1 },
-             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
-                 SpecialItems = new List<SpecialItems>
-                 {
-                     new SpecialItems { SpecialItemName = "Fajita Beef" },
-                     new SpecialItems { SpecialItemName = "No Sour Cream" }
-                 }
-             },
-             new Items { ItemName = "TEA", Quantity = 1 },
-             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
-         }
-     },
-     new Ticket
-     {
-         TicketNumber = "136",
-         TableNumber = 16,
-         WaiterName = "Jane Smith",
-         OrderDateTime = DateTime.Now.AddMinutes(20),
-         Items = new List<Items>
-         {
-             new Items { ItemName = "Chk Enchilada", Quantity = 1 },
-             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
-                 SpecialItems = new List<SpecialItems>
-                 {
-                     new SpecialItems { SpecialItemName = "Fajita Beef" },
-                     new SpecialItems { SpecialItemName = "No Sour Cream" }
-                 }
-             },
-             new Items { ItemName = "TEA", Quantity = 1 },
-             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
-             new Items { ItemName = "RITA JUM HH", Quantity = 1 },
-             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
-                 SpecialItems = new List<SpecialItems>
-                 {
-                     new SpecialItems { SpecialItemName = "Fajita Beef" }
-                 }
-             },
-
-         }
-     },
-     new Ticket
-     {
-         TicketNumber = "137",
-         TableNumber = 17,
-         WaiterName = "Jane Smith",
-         OrderDateTime = DateTime.Now.AddMinutes(20),
-         Items = new List<Items>
-         {
-             new Items { ItemName = "Chk Enchilada", Quantity = 1 },
-             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
-                 SpecialItems = new List<SpecialItems>
-                 {
-                     new SpecialItems { SpecialItemName = "Fajita Beef" },
-                     new SpecialItems { SpecialItemName = "No Sour Cream" }
-                 }
-             },
-             new Items { ItemName = "TEA", Quantity = 1 },
-             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
-             new Items { ItemName = "RITA JUM HH", Quantity = 1 },
-             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
-                 SpecialItems = new List<SpecialItems>
-                 {
-                     new SpecialItems { SpecialItemName = "Fajita Beef" }
-                 }
-             },
-             new Items { ItemName = "Chk Fajita", Quantity = 3 },
-             new Items { ItemName = "Cheese Puff", Quantity = 5 },
-             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
-         }
-     },
-     new Ticket
-     {
-         TicketNumber = "138",
-         TableNumber = 18,
-         WaiterName = "Jane Smith",
-         OrderDateTime = DateTime.Now.AddMinutes(20),
-         Items = new List<Items>
-         {
-             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
-             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
-                 SpecialItems = new List<SpecialItems>
-                 {
-                     new SpecialItems { SpecialItemName = "Fajita Beef" },
-                     new SpecialItems { SpecialItemName = "No Sour Cream" }
-                 }
-             },
-             new Items { ItemName = "TEA", Quantity = 1 },
-             new Items { ItemName = "TEA", Quantity = 1 },
-             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
-             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
-             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
-             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
-             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
-             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
-         }
-     },
-     new Ticket
-     {
-         TicketNumber = "139",
-         TableNumber = 19,
-         WaiterName = "Jane Smith",
-         OrderDateTime = DateTime.Now.AddMinutes(20),
-         Items = new List<Items>
-         {
-             new Items { ItemName = "Chk Enchilada", Quantity = 1 },
-             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
-                 SpecialItems = new List<SpecialItems>
-                 {
-                     new SpecialItems { SpecialItemName = "Fajita Beef" },
-                     new SpecialItems { SpecialItemName = "No Sour Cream" }
-                 }
-             },
-             new Items { ItemName = "TEA", Quantity = 1 },
-             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
-             new Items { ItemName = "RITA JUM HH", Quantity = 1 },
-             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
-                 SpecialItems = new List<SpecialItems>
-                 {
-                     new SpecialItems { SpecialItemName = "Fajita Beef" }
-                 }
-             },
-
-         }
-     },
-     new Ticket
-     {
-         TicketNumber = "140",
-         TableNumber = 20,
-         WaiterName = "Jane Smith",
-         OrderDateTime = DateTime.Now.AddMinutes(20),
-         Items = new List<Items>
-         {
-             new Items { ItemName = "Chk Enchilada", Quantity = 1 },
-             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
-                 SpecialItems = new List<SpecialItems>
-                 {
-                     new SpecialItems { SpecialItemName = "Fajita Beef" },
-                     new SpecialItems { SpecialItemName = "No Sour Cream" }
-                 }
-             },
-             new Items { ItemName = "TEA", Quantity = 1 },
-             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
-             new Items { ItemName = "RITA JUM HH", Quantity = 1 },
-             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
-                 SpecialItems = new List<SpecialItems>
-                 {
-                     new SpecialItems { SpecialItemName = "Fajita Beef" }
-                 }
-             },
-
-         }
-     },
-     new Ticket
-     {
-         TicketNumber = "142",
-         TableNumber = 21,
-         WaiterName = "Jane Smith",
-         OrderDateTime = DateTime.Now.AddMinutes(20),
-         Items = new List<Items>
-         {
-             new Items { ItemName = "Chk Enchilada", Quantity = 1 },
-             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
-                 SpecialItems = new List<SpecialItems>
-                 {
-                     new SpecialItems { SpecialItemName = "Fajita Beef" },
-                     new SpecialItems { SpecialItemName = "No Sour Cream" }
-                 }
-             },
-             new Items { ItemName = "TEA", Quantity = 1 },
-             new Items { ItemName = "RITA JUM HH", Quantity = 1 },
-              new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
-                 SpecialItems = new List<SpecialItems>
-                 {
-                     new SpecialItems { SpecialItemName = "Fajita Beef" },
-                     new SpecialItems { SpecialItemName = "Extra Cream" }
-                 }
-             },
-             new Items { ItemName = "Tea", Quantity = 3 },
-
-         }
-     },
-      new Ticket
-     {
-         TicketNumber = "128",
-         TableNumber = 6,
-         WaiterName = "Jane Smith",
-         OrderDateTime = DateTime.Now.AddMinutes(20),
-         Items = new List<Items>
-         {
-             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
-             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
-                 SpecialItems = new List<SpecialItems>
-                 {
-                     new SpecialItems { SpecialItemName = "Fajita Beef" },
-                     new SpecialItems { SpecialItemName = "No Sour Cream" }
-                 }
-             },
-             new Items { ItemName = "TEA", Quantity = 1 },
-             new Items { ItemName = "TEA", Quantity = 1 },
-             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
-             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
-             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
-             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
-             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
-             new Items { ItemName = "RITA JUM HH", Quantity = 2 },
-         }
-     },
-     new Ticket
-     {
-         TicketNumber = "129",
-         TableNumber = 7,
-         WaiterName = "Jane Smith",
-         OrderDateTime = DateTime.Now.AddMinutes(-20),
-        Items = new List<Items>
-         {
-             new Items { ItemName = "Chk Enchilada", Quantity = 1 },
-             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
-                 SpecialItems = new List<SpecialItems>
-                 {
-                     new SpecialItems { SpecialItemName = "Fajita Beef" },
-                     new SpecialItems { SpecialItemName = "No Sour Cream" }
-                 }
-             },
-             new Items { ItemName = "TEA", Quantity = 1 },
-             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
-             new Items { ItemName = "RITA JUM HH", Quantity = 1 },
-             new Items { ItemName = "CCQ BLANCO lg", Quantity = 1,
-                 SpecialItems = new List<SpecialItems>
-                 {
-                     new SpecialItems { SpecialItemName = "Fajita Beef" }
-                 }
-             },
-             new Items { ItemName = "Chk Fajita", Quantity = 3 },
-             new Items { ItemName = "Cheese Puff", Quantity = 5 },
-             new Items { ItemName = "RITA SPC sm", Quantity = 1 },
-         }
-     },
-     new Ticket
-     {
-         TicketNumber = "118",
-         TableNumber = 8,
+         TableNumber = 23,
          WaiterName = "Jane Smith",
          OrderDateTime = DateTime.Now.AddMinutes(20),
          Items = new List<Items>
@@ -3321,22 +3337,28 @@ namespace PublicAPI.ViewModels
 
  };
 
-            foreach (var ticket in Tickets)
-            {
-                ticket.ItemNumber = ticket.Items.Count;
+                foreach (var ticket in Tickets)
+                {
+                    ticket.ItemNumber = ticket.Items.Count;
+                }
+
+
+                timer = new System.Timers.Timer(1000);
+                timer.Elapsed += TimerElapsed;
+                timer.AutoReset = true;
+                timer.Start();
+                CurrentPage = 1;
+                CompleteTicketCommand = new Command<Ticket>(CompleteTicket);
+                CompleteItemCommand = new Command<Items>(CompleteItem);
+                UndoCommand = new Command(UndoLastAction);
+                NextPageCommand = new Command(NextPage);
+                PreviousPageCommand = new Command(PreviousPage);
             }
 
-
-            timer = new System.Timers.Timer(1000);
-            timer.Elapsed += TimerElapsed;
-            timer.AutoReset = true;
-            timer.Start();
-            CurrentPage = 1;
-            CompleteTicketCommand = new Command<Ticket>(CompleteTicket);
-            CompleteItemCommand = new Command<Items>(CompleteItem);
-            UndoCommand = new Command(UndoLastAction);
-            NextPageCommand = new Command(NextPage);
-            PreviousPageCommand = new Command(PreviousPage);
+            finally
+            {
+                IsLoading = false;
+            }
         }
 
         #endregion
@@ -3357,12 +3379,21 @@ namespace PublicAPI.ViewModels
 
         private void RefreshTicketStatuses()
         {
-            if (Tickets != null)
+            
+            try
             {
-                foreach (var ticket in Tickets)
+                IsLoading = true;
+                if (Tickets != null)
                 {
-                    ticket.RefreshTimeExceededStatus(CurrentDateTime);
+                    foreach (var ticket in Tickets)
+                    {
+                        ticket.RefreshTimeExceededStatus(CurrentDateTime);
+                    }
                 }
+            }
+            finally
+            {
+                IsLoading = false;
             }
         }
 
@@ -3401,81 +3432,100 @@ namespace PublicAPI.ViewModels
 
         private void UndoLastAction()
         {
-            if (undoStack.Count > 0)
+            try
             {
-                var lastAction = undoStack.Pop();
-                switch (lastAction.Type)
+                IsLoading = true;
+
+                if (undoStack.Count > 0)
                 {
-                    case ActionType.CompleteTicket:
-                        lastAction.Ticket.IsCompleted = false;
-                        PagedTickets.Insert(lastAction.OriginalIndex, lastAction.Ticket);
-                        break;
+                    var lastAction = undoStack.Pop();
+                    switch (lastAction.Type)
+                    {
+                        case ActionType.CompleteTicket:
+                            lastAction.Ticket.IsCompleted = false;
+                            PagedTickets.Insert(lastAction.OriginalIndex, lastAction.Ticket);
+                            break;
 
-                    case ActionType.CompleteItem:
-                        lastAction.Item.IsCompleted = false;
-                        break;
+                        case ActionType.CompleteItem:
+                            lastAction.Item.IsCompleted = false;
+                            break;
 
-                    default:
-                        break;
+                        default:
+                            break;
+                    }
+                    OnPropertyChanged(nameof(PagedTickets));
                 }
-                OnPropertyChanged(nameof(PagedTickets));
             }
+            finally
+            {
+                IsLoading = false;
+            }
+            
         }
 
 
         private const int TicketWidth = 168;
 
-        private const double BottomButtonHeight = 50; 
+        private const double BottomButtonHeight = 50;
 
         private void UpdatePagedTickets()
         {
             PagedTickets.Clear();
-
-            int ticketsPerRow = (int)(screenWidth / TicketWidth);
-            double currentRowHeight = 0;
-            double accumulatedPageHeight = 0;
-            int columnCount = 0;
-
-            double availableHeight = screenHeight - BottomButtonHeight - 15; 
-
-            int startIndex = (CurrentPage - 1) * ticketsPerRow;
-            int endIndex = Math.Min(startIndex + ticketsPerRow * (int)(availableHeight / (70 + 30)), Tickets.Count); 
-
-            for (int i = startIndex; i < endIndex; i++)
+            try
             {
-                double ticketHeight = CalculateTicketHeight(Tickets[i]); 
+                IsLoading = true;
 
-                if (accumulatedPageHeight + ticketHeight > availableHeight)
-                {
-                    TotalPages = (int)Math.Ceiling((double)Tickets.Count / ticketsPerRow);
-                    break; 
-                }
+                int ticketsPerRow = (int)(screenWidth / TicketWidth);
+                double currentRowHeight = 0;
+                double accumulatedPageHeight = 0;
+                int columnCount = 0;
 
-                if (columnCount >= ticketsPerRow)
+                double availableHeight = screenHeight - BottomButtonHeight - 15;
+
+                int startIndex = (CurrentPage - 1) * ticketsPerRow;
+                int endIndex = Math.Min(startIndex + ticketsPerRow * (int)(availableHeight / (70 + 30)), Tickets.Count);
+
+                for (int i = startIndex; i < endIndex; i++)
                 {
-                    columnCount = 0;
-                    accumulatedPageHeight += currentRowHeight; 
-                    currentRowHeight = 0; 
+                    double ticketHeight = CalculateTicketHeight(Tickets[i]);
 
                     if (accumulatedPageHeight + ticketHeight > availableHeight)
                     {
                         TotalPages = (int)Math.Ceiling((double)Tickets.Count / ticketsPerRow);
-                        break; 
+                        break;
                     }
+
+                    if (columnCount >= ticketsPerRow)
+                    {
+                        columnCount = 0;
+                        accumulatedPageHeight += currentRowHeight;
+                        currentRowHeight = 0;
+
+                        if (accumulatedPageHeight + ticketHeight > availableHeight)
+                        {
+                            TotalPages = (int)Math.Ceiling((double)Tickets.Count / ticketsPerRow);
+                            break;
+                        }
+                    }
+
+                    PagedTickets.Add(Tickets[i]);
+                    columnCount++;
+
+                    currentRowHeight = Math.Max(currentRowHeight, ticketHeight);
                 }
 
-                PagedTickets.Add(Tickets[i]);
-                columnCount++;
-
-                currentRowHeight = Math.Max(currentRowHeight, ticketHeight);
+                if (TotalPages == 0)
+                {
+                    TotalPages = (int)Math.Ceiling((double)Tickets.Count / ticketsPerRow);
+                }
             }
-
-            if (TotalPages == 0)
+            finally
             {
-                TotalPages = (int)Math.Ceiling((double)Tickets.Count / ticketsPerRow);
+                IsLoading = false;
             }
-        }
 
+            
+        }
 
         /*private void UpdatePagedTickets()
         {
@@ -3538,14 +3588,18 @@ namespace PublicAPI.ViewModels
 
         public void NextPage()
         {
+            IsLoading = true;
             if (CurrentPage < totalPages)
                 CurrentPage++;
+            IsLoading = false;
         }
 
         public void PreviousPage()
         {
+            IsLoading = true;
             if (CurrentPage > 1)
                 CurrentPage--;
+            IsLoading = false;
         }
 
         #endregion

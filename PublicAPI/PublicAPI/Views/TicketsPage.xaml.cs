@@ -22,23 +22,15 @@ public partial class TicketsPage : ContentPage
             ticket.IsTimeExceeded = ticket.OrderDateTime < _viewModel.CurrentDateTime && !ticket.IsCompleted;
         }
     }
-    double previousWidth = 0;
-    double previousHeight = 0;
 
     protected override void OnSizeAllocated(double width, double height)
     {
         base.OnSizeAllocated(width, height);
-
-        if (Math.Abs(width - previousWidth) >= 200 || Math.Abs(height - previousHeight) >= 200)
-        {
-            previousWidth = width;
-            previousHeight = height;
-
             flexHeight = height * 0.95;
             FlexContainer.HeightRequest = flexHeight;
             flexWidth = width;
             _viewModel.SetScreenWidth(flexHeight, flexHeight);
-        }
+        
     }
 
 
