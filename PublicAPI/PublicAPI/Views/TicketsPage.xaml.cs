@@ -5,6 +5,8 @@ namespace PublicAPI.Views;
 public partial class TicketsPage : ContentPage
 {
     public TicketsVM _viewModel;
+    public double flexHeight;
+    public double flexWidth;
     public TicketsPage()
 	{
 		InitializeComponent();
@@ -15,20 +17,50 @@ public partial class TicketsPage : ContentPage
     }
     private void RefreshTicketStatuses()
     {
-        foreach (var ticket in _viewModel.Tickets)
+        foreach (var ticket in _viewModel.PagedTickets)
         {
             ticket.IsTimeExceeded = ticket.OrderDateTime < _viewModel.CurrentDateTime && !ticket.IsCompleted;
         }
     }
+    double previousWidth = 0;
+    double previousHeight = 0;
+
     protected override void OnSizeAllocated(double width, double height)
     {
         base.OnSizeAllocated(width, height);
 
-        _viewModel.SetScreenWidth(width);
-        double requiredWidth = (168 * 7) + (15 * 6);
-        FlexSkillContainer.WidthRequest = Math.Min(width, requiredWidth);
-        double flexHeight = height * 0.95;
-        FlexSkillContainer.HeightRequest = flexHeight;
+        if (Math.Abs(width - previousWidth) >= 200 || Math.Abs(height - previousHeight) >= 200)
+        {
+            previousWidth = width;
+            previousHeight = height;
+
+            flexHeight = height * 0.95;
+            FlexContainer.HeightRequest = flexHeight;
+            flexWidth = width;
+            _viewModel.SetScreenWidth(flexHeight, flexHeight);
+        }
     }
-   
+
+
+
+    /*protected override void OnSizeAllocated(double width, double height)
+    {
+        base.OnSizeAllocated(width, height);
+
+        flexHeight = height * 0.95;
+        FlexSkillContainer.HeightRequest = flexHeight;
+        flexWidth = width;
+        
+        _viewModel.SetScreenWidth(flexHeight, flexHeight);
+
+    }*/
+
+    /*private void OnContentViewSizeChanged(object sender, EventArgs e)
+    {
+        if (sender is ContentView contentView)
+        {
+            double newHeight = contentView.Height;
+
+        }
+    }*/
 }

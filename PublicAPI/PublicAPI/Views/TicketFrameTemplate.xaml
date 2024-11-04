@@ -10,14 +10,12 @@
                 Padding="0"
                 HeightRequest="-1"
                 VerticalOptions="StartAndExpand">
-                <Frame
-                    Margin="0,15,15,0"
+                <StackLayout
+                    Margin="0,12,12,0"
                     Padding="0"
-                    BorderColor="Transparent"
-                    CornerRadius="0"
-                    HasShadow="True"
+                    HorizontalOptions="FillAndExpand"
                     VerticalOptions="FillAndExpand"
-                    WidthRequest="168">
+                    WidthRequest="168.75">
                     <StackLayout Padding="0">
                         <StackLayout
                             x:Name="TickerHeader"
@@ -238,7 +236,7 @@
                             </CollectionView>
                         </StackLayout>
                     </StackLayout>
-                </Frame>
+                </StackLayout>
             </Grid>
         </ControlTemplate>
     </ContentView.Resources>

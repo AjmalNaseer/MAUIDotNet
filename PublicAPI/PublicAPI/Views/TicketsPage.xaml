@@ -7,16 +7,19 @@
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     BackgroundColor="#757575"
     Shell.NavBarIsVisible="False">
-    <Grid Margin="12.75,12.75,8,7.5">
+    <Grid Margin="12.75,12.75,12.75,7.5">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <Grid Grid.Row="0">
+        <Grid
+            Padding="0"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Grid Grid.Row="0" Padding="0">
 
                 <FlexLayout
-                    x:Name="FlexSkillContainer"
+                    x:Name="FlexContainer"
                     Margin="0,0,0,0"
                     Padding="0"
                     AlignContent="{OnPlatform iOS=Center,
@@ -37,11 +40,10 @@
 
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
-                            <template:TicketFrameTemplate ControlTemplate="{StaticResource  TicketTemplate}" />
+                            <template:TicketFrameTemplate ControlTemplate="{StaticResource TicketTemplate}" />
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>
                 </FlexLayout>
-
 
             </Grid>
             <Grid
@@ -49,7 +51,8 @@
                 Margin="{OnPlatform Android='0,0,0,0',
                                     iOS='0,0,0,0',
                                     Default='0'}"
-                ColumnSpacing="65"
+                Padding="0"
+                ColumnSpacing="62"
                 VerticalOptions="{OnPlatform Default='EndAndExpand',
                                              iOS='End',
                                              Android='End'}">
@@ -58,7 +61,10 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0" Margin="0,0,0,0">
+                <Grid
+                    Grid.Column="0"
+                    Margin="0,0,0,0"
+                    Padding="0">
                     <!--  Kitchen Label  -->
                     <Label
                         Grid.Column="0"
@@ -75,7 +81,8 @@
                     Grid.Column="2"
                     Grid.ColumnSpan="4"
                     Margin="0,0,0,0"
-                    ColumnSpacing="30"
+                    Padding="0"
+                    ColumnSpacing="40"
                     HorizontalOptions="CenterAndExpand">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -83,7 +90,10 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0" Padding="0,0,0,0">
+                    <Grid
+                        Grid.Column="0"
+                        Margin="0"
+                        Padding="0">
                         <Label
                             Padding="2"
                             BackgroundColor="#943F3F"
@@ -95,7 +105,10 @@
                             TextColor="#FFFFFF"
                             VerticalOptions="End" />
                     </Grid>
-                    <Grid Grid.Column="1">
+                    <Grid
+                        Grid.Column="1"
+                        Margin="0"
+                        Padding="0">
                         <Label
                             Grid.Column="3"
                             Padding="2"
@@ -108,7 +121,10 @@
                             TextColor="#FFFFFF"
                             VerticalOptions="End" />
                     </Grid>
-                    <Grid Grid.Column="2">
+                    <Grid
+                        Grid.Column="2"
+                        Margin="0"
+                        Padding="0">
                         <!--  Double Click Header Label  -->
                         <Label
                             Padding="2"
@@ -120,7 +136,10 @@
                             Text="Double Click header when Done"
                             VerticalOptions="End" />
                     </Grid>
-                    <Grid Grid.Column="3">
+                    <Grid
+                        Grid.Column="3"
+                        Margin="0"
+                        Padding="0">
                         <!--  Current DateTime Label  -->
                         <Label
                             Padding="2"
@@ -138,9 +157,11 @@
             <Grid
                 Grid.Row="1"
                 Grid.Column="3"
-                ColumnSpacing="10"
+                Margin="0"
+                Padding="0"
+                ColumnSpacing="4"
                 HorizontalOptions="End"
-                RowSpacing="10"
+                RowSpacing="6"
                 VerticalOptions="End">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />

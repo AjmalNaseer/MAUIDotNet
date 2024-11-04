@@ -18,6 +18,7 @@ namespace PublicAPI.ViewModels
         private System.Timers.Timer timer;
         private DateTime _currentDateTime;
         private double screenWidth;
+        private double screenHeight;
 
         #endregion
 
@@ -65,6 +66,18 @@ namespace PublicAPI.ViewModels
                     currentPage = value;
                     OnPropertyChanged();
                     UpdatePagedTickets();
+                }
+            }
+        }
+        public int TotalPages
+        {
+            get => totalPages;
+            private set
+            {
+                if (totalPages != value)
+                {
+                    totalPages = value;
+                    OnPropertyChanged();
                 }
             }
         }
@@ -3357,7 +3370,7 @@ namespace PublicAPI.ViewModels
         {
             if (ticket != null)
             {
-                int index = Tickets.IndexOf(ticket);
+                int index = PagedTickets.IndexOf(ticket);
 
                 ticket.IsCompleted = true;
 
@@ -3368,8 +3381,7 @@ namespace PublicAPI.ViewModels
                     OriginalIndex = index 
                 });
 
-                Tickets.Remove(ticket);
-                UpdatePagedTickets();
+                PagedTickets.Remove(ticket);
             }
         }
 
@@ -3396,40 +3408,131 @@ namespace PublicAPI.ViewModels
                 {
                     case ActionType.CompleteTicket:
                         lastAction.Ticket.IsCompleted = false;
-
-                        Tickets.Insert(lastAction.OriginalIndex, lastAction.Ticket);
+                        PagedTickets.Insert(lastAction.OriginalIndex, lastAction.Ticket);
                         break;
 
                     case ActionType.CompleteItem:
                         lastAction.Item.IsCompleted = false;
                         break;
-                }
 
-                UpdatePagedTickets();
-                OnPropertyChanged(nameof(Tickets));
+                    default:
+                        break;
+                }
+                OnPropertyChanged(nameof(PagedTickets));
             }
         }
 
-        private const int TicketWidth = 168; 
+
+        private const int TicketWidth = 168;
+
+        private const double BottomButtonHeight = 50; 
 
         private void UpdatePagedTickets()
         {
             PagedTickets.Clear();
+
             int ticketsPerRow = (int)(screenWidth / TicketWidth);
-            totalPages = (int)Math.Ceiling((double)Tickets.Count / ticketsPerRow);
+            double currentRowHeight = 0;
+            double accumulatedPageHeight = 0;
+            int columnCount = 0;
+
+            double availableHeight = screenHeight - BottomButtonHeight - 15; 
 
             int startIndex = (CurrentPage - 1) * ticketsPerRow;
-            int endIndex = Math.Min(startIndex + ticketsPerRow, Tickets.Count);
+            int endIndex = Math.Min(startIndex + ticketsPerRow * (int)(availableHeight / (70 + 30)), Tickets.Count); 
 
             for (int i = startIndex; i < endIndex; i++)
             {
+                double ticketHeight = CalculateTicketHeight(Tickets[i]); 
+
+                if (accumulatedPageHeight + ticketHeight > availableHeight)
+                {
+                    TotalPages = (int)Math.Ceiling((double)Tickets.Count / ticketsPerRow);
+                    break; 
+                }
+
+                if (columnCount >= ticketsPerRow)
+                {
+                    columnCount = 0;
+                    accumulatedPageHeight += currentRowHeight; 
+                    currentRowHeight = 0; 
+
+                    if (accumulatedPageHeight + ticketHeight > availableHeight)
+                    {
+                        TotalPages = (int)Math.Ceiling((double)Tickets.Count / ticketsPerRow);
+                        break; 
+                    }
+                }
+
                 PagedTickets.Add(Tickets[i]);
+                columnCount++;
+
+                currentRowHeight = Math.Max(currentRowHeight, ticketHeight);
+            }
+
+            if (TotalPages == 0)
+            {
+                TotalPages = (int)Math.Ceiling((double)Tickets.Count / ticketsPerRow);
             }
         }
 
-        public void SetScreenWidth(double width)
+
+        /*private void UpdatePagedTickets()
+        {
+            PagedTickets.Clear();
+
+            // Calculate the number of tickets that fit per row based on fixed width
+            int ticketsPerRow = (int)(screenWidth / TicketWidth);
+            int ticketsPerPage = ticketsPerRow; // Start with one row and add dynamically
+
+            double currentRowHeight = 0;
+            double accumulatedPageHeight = 0;
+            int rowCount = 0;
+            int columnCount = 0;
+
+            int startIndex = (CurrentPage - 1) * ticketsPerPage;
+            int endIndex = Math.Min(startIndex + Tickets.Count, Tickets.Count);
+
+            for (int i = startIndex; i < endIndex; i++)
+            {
+                double ticketHeight = CalculateTicketHeight(Tickets[i]); // Custom method to get ticket height
+
+                // Check if adding this ticket exceeds the row width
+                if (columnCount >= ticketsPerRow)
+                {
+                    // Reset for the next row
+                    columnCount = 0;
+                    accumulatedPageHeight += currentRowHeight; // Add row height to page height
+                    currentRowHeight = 0;
+                    rowCount++;
+
+                    // Check if adding this row exceeds the screen height
+                    if (accumulatedPageHeight + ticketHeight > screenHeight)
+                    {
+                        break; // Stop adding tickets as page height is exceeded
+                    }
+                }
+
+                // Add the ticket to the paged collection
+                PagedTickets.Add(Tickets[i]);
+                columnCount++;
+
+                // Track maximum height in the current row
+                currentRowHeight = Math.Max(currentRowHeight, ticketHeight);
+            }
+            TotalPages = (int)Math.Ceiling((double)Tickets.Count / (ticketsPerRow * (screenHeight / (70 + 30))));
+
+        }
+*/
+        private double CalculateTicketHeight(Ticket ticket)
+        {
+            return ((ticket.ItemNumber *10) + 45);
+        }
+
+        public void SetScreenWidth(double width, double height)
         {
             screenWidth = width;
+            screenHeight = height;
             UpdatePagedTickets(); 
         }
 
@@ -3475,5 +3578,6 @@ namespace PublicAPI.ViewModels
         }
 
         #endregion
+       
     }
 }
