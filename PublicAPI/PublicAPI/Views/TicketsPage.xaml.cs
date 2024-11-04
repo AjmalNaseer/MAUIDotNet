@@ -26,7 +26,7 @@ public partial class TicketsPage : ContentPage
     protected override void OnSizeAllocated(double width, double height)
     {
         base.OnSizeAllocated(width, height);
-            flexHeight = height * 0.95;
+            flexHeight = height * 0.85;
             FlexContainer.HeightRequest = flexHeight;
             flexWidth = width;
             _viewModel.SetScreenWidth(flexHeight, flexHeight);

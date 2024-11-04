@@ -12,12 +12,14 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
         <Grid
             Padding="0"
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand">
-            <Grid Grid.Row="0" Padding="0">
+            <Grid
+                Grid.Row="0"
+                Padding="0"
+                VerticalOptions="StartAndExpand">
                 <FlexLayout
                     x:Name="FlexContainer"
                     Margin="0,0,0,0"
@@ -89,7 +91,7 @@
                         FontAttributes="None"
                         FontFamily="RobotoCondensedRegular"
                         FontSize="18.75"
-                        HorizontalTextAlignment="Start"
+                        HorizontalTextAlignment="Center"
                         Text="Exceeding Cooking Time"
                         TextColor="#FFFFFF"
                         VerticalOptions="End" />
@@ -105,7 +107,7 @@
                         FontAttributes="None"
                         FontFamily="RobotoCondensedRegular"
                         FontSize="18.75"
-                        HorizontalTextAlignment="Start"
+                        HorizontalTextAlignment="Center"
                         Text="Select item when Prepared"
                         TextColor="#FFFFFF"
                         VerticalOptions="End" />
@@ -121,7 +123,7 @@
                         FontAttributes="None"
                         FontFamily="RobotoCondensedRegular"
                         FontSize="18.75"
-                        HorizontalTextAlignment="Start"
+                        HorizontalTextAlignment="Center"
                         Text="Double Click header when Done"
                         VerticalOptions="End" />
                 </Grid>
@@ -135,7 +137,7 @@
                         FontAttributes="None"
                         FontFamily="RobotoCondensedRegular"
                         FontSize="15"
-                        HorizontalTextAlignment="Start"
+                        HorizontalTextAlignment="Center"
                         Text="{Binding CurrentDateTime, StringFormat='{}{0:HH:mm:ss}    {0:MM/dd/yyyy}'}"
                         TextColor="#C7C7C7"
                         VerticalOptions="End" />

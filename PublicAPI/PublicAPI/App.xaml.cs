@@ -19,10 +19,10 @@ namespace PublicAPI
             var window = base.CreateWindow(activationState);
 
             const double newWidth = 1296;
-            const double newHeight = 960.75;
+            const double newHeight = 840.75;
 
             window.X = 100;
-            window.Y = 100;
+            window.Y = 50;
 
             window.Width = newWidth;
             window.MinimumWidth = newWidth;
