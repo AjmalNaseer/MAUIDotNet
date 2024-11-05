@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ToDoList.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ToDoList.Views"
+    Title="ToDoList"
+    Shell.FlyoutBehavior="Flyout">
+
+    <ShellContent
+        Title="Login"
+        ContentTemplate="{DataTemplate local:LoginPage}"
+        FlyoutItemIsVisible="False"
+        Route="LoginPage"
+        Shell.FlyoutBehavior="Disabled" />
+    <ShellContent
+        Title="Register"
+        ContentTemplate="{DataTemplate local:RegistrationPage}"
+        FlyoutItemIsVisible="False"
+        Route="RegisterPage"
+        Shell.FlyoutBehavior="Disabled" />
+    <ShellContent
+        Title="All Task"
+        ContentTemplate="{DataTemplate local:AllTaskPage}"
+        Route="AllTaskPage" />
+    <ShellContent
+        Title="Add Task"
+        ContentTemplate="{DataTemplate local:AddTaskPage}"
+        Route="AddTaskPage" />
+    <ShellContent
+        Title="User"
+        ContentTemplate="{DataTemplate local:UserInfoPage}"
+        Route="UserInfoPage" />
+
+    <Shell.FlyoutFooter>
+        <StackLayout Padding="20" Spacing="20">
+            <Button Command="{Binding LogoutCommand}" Text="Logout" />
+            <StackLayout HorizontalOptions="Center">
+                <Label
+                    FontFamily="InterSemibold"
+                    FontSize="12"
+                    HorizontalOptions="Center"
+                    Text="Developed with 💓 " />
+                <Label
+                    FontSize="10"
+                    HorizontalOptions="Center"
+                    Text="App version: 1.0" />
+            </StackLayout>
+        </StackLayout>
+
+    </Shell.FlyoutFooter>
+
+</Shell>

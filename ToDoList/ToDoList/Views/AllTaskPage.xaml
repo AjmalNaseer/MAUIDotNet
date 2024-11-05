@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ToDoList.Views.AllTaskPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="AllTaskPage"
+    BackgroundColor="#d3d3d3"
+    Shell.FlyoutBehavior="Flyout"
+    Shell.FlyoutItemIsVisible="True"
+    Shell.NavBarIsVisible="False">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="25">
+            <!--  User Profile  -->
+            <Frame
+                Padding="10"
+                BackgroundColor="Transparent"
+                BorderColor="Transparent"
+                HorizontalOptions="Center">
+                <StackLayout Spacing="10">
+                    <Frame
+                        Padding="0"
+                        CornerRadius="80"
+                        HeightRequest="150"
+                        WidthRequest="150">
+                        <Image
+                            HeightRequest="80"
+                            Source="user_image.png"
+                            WidthRequest="80" />
+                    </Frame>
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        Text="{Binding FullName}"
+                        TextColor="Gray" />
+
+                    <Button
+                        BackgroundColor="#5F6062"
+                        Command="{Binding UpdateProfileCommand}"
+                        Text="Update Profile"
+                        TextColor="White" />
+                </StackLayout>
+
+            </Frame>
+
+            <!--  Task List  -->
+            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="24"
+                    HorizontalOptions="StartAndExpand"
+                    Text="Tasks List"
+                    TextColor="#5F6062" />
+                <Button
+                    BackgroundColor="#5F6062"
+                    Command="{Binding AddTaskCommand}"
+                    HorizontalOptions="End"
+                    Text="Add Task"
+                    TextColor="White" />
+
+            </StackLayout>
+
+            <Frame
+                Padding="0"
+                BackgroundColor="White"
+                BorderColor="Transparent"
+                CornerRadius="4">
+                <VerticalStackLayout Padding="10">
+                    <ScrollView VerticalOptions="FillAndExpand">
+                        <ListView
+                            x:Name="listView"
+                            HasUnevenRows="True"
+                            ItemSelected="OnListItemSelected"
+                            ItemsSource="{Binding Tasks}"
+                            SeparatorVisibility="Default">
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Frame
+                                            Margin="10,0,0,10"
+                                            BackgroundColor="Transparent"
+                                            BorderColor="Transparent"
+                                            CornerRadius="10"
+                                            HasShadow="True"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="FillAndExpand">
+                                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                                <Label
+                                                    FontSize="Medium"
+                                                    Text="{Binding Name}"
+                                                    TextColor="#5F6062"
+                                                    VerticalOptions="StartAndExpand" />
+                                                <Image
+                                                    HeightRequest="24"
+                                                    HorizontalOptions="EndAndExpand"
+                                                    IsVisible="{Binding Done}"
+                                                    Source="check.png"
+                                                    WidthRequest="24" />
+                                            </StackLayout>
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </ScrollView>
+
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

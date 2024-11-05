@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ToDoList.Views.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="LoginPage"
+    BackgroundColor="#d3d3d3"
+    Shell.NavBarIsVisible="False">
+    <ScrollView VerticalOptions="FillAndExpand">
+        <VerticalStackLayout
+            Padding="20"
+            Spacing="15"
+            VerticalOptions="CenterAndExpand">
+            <!--  Image  -->
+            <Image
+                HeightRequest="150"
+                HorizontalOptions="Center"
+                Source="logo" />
+
+            <!--  Title  -->
+            <Label
+                FontAttributes="Bold"
+                FontSize="24"
+                HorizontalOptions="Center"
+                Text="Welcome back"
+                TextColor="#5F6062" />
+
+            <!--  Input Fields  -->
+            <Entry
+                Keyboard="Email"
+                Placeholder="Enter your email"
+                Text="{Binding Email}"
+                TextColor="#5F6062" />
+            <Entry
+                IsPassword="True"
+                Placeholder="Enter password"
+                Text="{Binding Password}"
+                TextColor="#5F6062" />
+
+            <!--  Forgot Password  -->
+            <Label
+                FontSize="14"
+                HorizontalOptions="End"
+                Text="Forgot Password"
+                TextColor="#5F6062" />
+
+            <!--  Sign In Button  -->
+            <Button
+                BackgroundColor="#5F6062"
+                Command="{Binding LoginCommand}"
+                Text="Sign In"
+                TextColor="White" />
+
+            <!--  Link to Sign Up  -->
+            <StackLayout
+                HorizontalOptions="CenterAndExpand"
+                Orientation="Horizontal"
+                Spacing="10">
+                <Label
+                    FontSize="14"
+                    HorizontalOptions="Center"
+                    Text="Don’t have an account?"
+                    TextColor="#5F6062" />
+                <Label
+                    FontSize="14"
+                    HorizontalOptions="Center"
+                    Text="Sign Up"
+                    TextColor="#FF5733">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigateToSignupCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

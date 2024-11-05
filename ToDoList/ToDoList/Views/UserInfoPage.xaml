@@ -1,0 +1,128 @@
+<ContentPage
+    x:Class="ToDoList.Views.UserInfoPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="User Info"
+    BackgroundColor="#f7f7f7"
+    Shell.NavBarIsVisible="False">
+
+    <ScrollView Padding="15">
+        <VerticalStackLayout Spacing="20">
+
+            <!--  Title and Back Button  -->
+            <Frame
+                Padding="0"
+                BackgroundColor="#333333"
+                CornerRadius="2"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <StackLayout Padding="10" Orientation="Horizontal">
+                    <Image
+                        HeightRequest="24"
+                        HorizontalOptions="Start"
+                        Source="back_white_icon"
+                        VerticalOptions="CenterAndExpand"
+                        WidthRequest="24">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NavigateBackCommand}" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="24"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Update Profile"
+                        TextColor="#FFFFFF"
+                        VerticalOptions="Center" />
+                </StackLayout>
+
+            </Frame>
+
+            <!--  User Info Section  -->
+            <Frame
+                Padding="15"
+                BackgroundColor="White"
+                BorderColor="#E0E0E0"
+                CornerRadius="12"
+                HasShadow="True">
+                <StackLayout Spacing="15">
+
+                    <!--  Full Name  -->
+                    <StackLayout Spacing="5">
+                        <Label
+                            FontSize="16"
+                            Text="Full Name"
+                            TextColor="#333333" />
+                        <Entry
+                            BackgroundColor="#f7f7f7"
+                            FontSize="18"
+                            HorizontalOptions="FillAndExpand"
+                            Placeholder="Enter your full name"
+                            Text="{Binding FullName}"
+                            TextColor="#333333" />
+                    </StackLayout>
+
+                    <!--  Email  -->
+                    <StackLayout Spacing="5">
+                        <Label
+                            FontSize="16"
+                            Text="Email"
+                            TextColor="#333333" />
+                        <Entry
+                            BackgroundColor="#f7f7f7"
+                            FontSize="18"
+                            HorizontalOptions="FillAndExpand"
+                            Keyboard="Email"
+                            Placeholder="Enter your email"
+                            Text="{Binding Email}"
+                            TextColor="#333333" />
+                    </StackLayout>
+
+                    <!--  Phone Number  -->
+                    <StackLayout Spacing="5">
+                        <Label
+                            FontSize="16"
+                            Text="Phone Number"
+                            TextColor="#333333" />
+                        <Entry
+                            BackgroundColor="#f7f7f7"
+                            FontSize="18"
+                            HorizontalOptions="FillAndExpand"
+                            Keyboard="Telephone"
+                            Placeholder="Enter your phone number"
+                            Text="{Binding PhoneNumber}"
+                            TextColor="#333333" />
+                    </StackLayout>
+
+                    <!--  Address  -->
+                    <StackLayout Spacing="5">
+                        <Label
+                            FontSize="16"
+                            Text="Address"
+                            TextColor="#333333" />
+                        <Entry
+                            BackgroundColor="#f7f7f7"
+                            FontSize="18"
+                            HorizontalOptions="FillAndExpand"
+                            Placeholder="Enter your address"
+                            Text="{Binding Address}"
+                            TextColor="#333333" />
+                    </StackLayout>
+
+                </StackLayout>
+            </Frame>
+
+            <!--  Save Button  -->
+            <Button
+                Padding="15"
+                BackgroundColor="#4CAF50"
+                Command="{Binding SaveCommand}"
+                CornerRadius="10"
+                FontSize="18"
+                HorizontalOptions="FillAndExpand"
+                Text="Save Changes"
+                TextColor="White" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

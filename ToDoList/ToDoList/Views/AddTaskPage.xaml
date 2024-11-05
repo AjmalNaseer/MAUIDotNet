@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ToDoList.Views.AddTaskPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="AddTaskPage"
+    BackgroundColor="#d3d3d3"
+    Shell.NavBarIsVisible="False">
+    <VerticalStackLayout>
+        <StackLayout
+            Margin="20"
+            Spacing="20"
+            VerticalOptions="FillAndExpand">
+            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                <Image
+                    HeightRequest="24"
+                    HorizontalOptions="Start"
+                    Source="back_white_icon"
+                    VerticalOptions="CenterAndExpand"
+                    WidthRequest="24">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigateBackCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label
+                    FontSize="Body"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Add Task"
+                    TextColor="Gray"
+                    VerticalOptions="CenterAndExpand" />
+            </StackLayout>
+
+            <Frame
+                Padding="10"
+                BackgroundColor="White"
+                BorderColor="Transparent"
+                CornerRadius="10"
+                HasShadow="True">
+                <StackLayout>
+                    <Label Text="Name" TextColor="Gray" />
+                    <Entry
+                        BackgroundColor="White"
+                        Placeholder="Enter name"
+                        PlaceholderColor="LightGray"
+                        Text="{Binding TodoItem.Name}"
+                        TextColor="#5F6062" />
+                </StackLayout>
+            </Frame>
+
+            <Frame
+                Padding="10"
+                BackgroundColor="White"
+                BorderColor="Transparent"
+                CornerRadius="10"
+                HasShadow="True">
+                <StackLayout>
+                    <Label Text="Notes" TextColor="Gray" />
+                    <Entry
+                        BackgroundColor="White"
+                        Placeholder="Enter notes"
+                        PlaceholderColor="LightGray"
+                        Text="{Binding TodoItem.Notes}"
+                        TextColor="#5F6062" />
+                </StackLayout>
+            </Frame>
+
+            <Frame
+                Padding="10"
+                BackgroundColor="White"
+                BorderColor="Transparent"
+                CornerRadius="10"
+                HasShadow="True">
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                    <Label
+                        Margin="0,10"
+                        HorizontalOptions="StartAndExpand"
+                        Text="Done"
+                        TextColor="Gray" />
+                    <Switch HorizontalOptions="EndAndExpand" IsToggled="{Binding TodoItem.Done}" />
+                </StackLayout>
+            </Frame>
+
+            <StackLayout
+                Padding="10"
+                HorizontalOptions="CenterAndExpand"
+                Orientation="Horizontal"
+                Spacing="10"
+                VerticalOptions="End">
+                <Frame
+                    Padding="0"
+                    BackgroundColor="#5F6062"
+                    BorderColor="Transparent"
+                    CornerRadius="10"
+                    HasShadow="True">
+                    <Button
+                        BackgroundColor="Transparent"
+                        Command="{Binding SaveCommand}"
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        Text="Save"
+                        TextColor="White" />
+                </Frame>
+
+                <Frame
+                    Padding="0"
+                    BackgroundColor="#F44336"
+                    BorderColor="Transparent"
+                    CornerRadius="10"
+                    HasShadow="True">
+                    <Button
+                        BackgroundColor="Transparent"
+                        Command="{Binding DeleteCommand}"
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        Text="Delete"
+                        TextColor="White" />
+                </Frame>
+
+                <Frame
+                    Padding="0"
+                    BackgroundColor="#2196F3"
+                    BorderColor="Transparent"
+                    CornerRadius="10"
+                    HasShadow="True">
+                    <Button
+                        BackgroundColor="Transparent"
+                        Command="{Binding CancelCommand}"
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        Text="Cancel"
+                        TextColor="White" />
+                </Frame>
+
+
+            </StackLayout>
+
+        </StackLayout>
+    </VerticalStackLayout>
+</ContentPage>
