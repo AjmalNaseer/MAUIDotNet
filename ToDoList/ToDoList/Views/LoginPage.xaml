@@ -37,12 +37,6 @@
                 Text="{Binding Password}"
                 TextColor="#5F6062" />
 
-            <!--  Forgot Password  -->
-            <Label
-                FontSize="14"
-                HorizontalOptions="End"
-                Text="Forgot Password"
-                TextColor="#5F6062" />
 
             <!--  Sign In Button  -->
             <Button

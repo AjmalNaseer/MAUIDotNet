@@ -37,6 +37,34 @@
                 </StackLayout>
 
             </Frame>
+            <Frame
+                Padding="10"
+                BackgroundColor="Transparent"
+                BorderColor="Transparent"
+                HorizontalOptions="Center">
+                <StackLayout Spacing="10">
+                    <Frame
+                        Padding="0"
+                        BackgroundColor="LightSalmon"
+                        BorderColor="Transparent"
+                        CornerRadius="80"
+                        HeightRequest="150"
+                        WidthRequest="150">
+                        <Image
+                            HeightRequest="80"
+                            Source="user_image.png"
+                            WidthRequest="80" />
+                    </Frame>
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        Text="{Binding FullName}"
+                        TextColor="Gray" />
+
+                </StackLayout>
+
+            </Frame>
 
             <!--  User Info Section  -->
             <Frame
