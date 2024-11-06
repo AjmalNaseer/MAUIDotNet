@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel;
 using System.Threading.Tasks;
-using ToDoList.Models;
-using ToDoList.Services;
+using QuickList.Models;
+using QuickList.Services;
 using Microsoft.Maui.Controls;
-using ToDoList.Views;
+using QuickList.Views;
 using System.Windows.Input;  // For MainThread
 
-namespace ToDoList.ViewModels
+namespace QuickList.ViewModels
 {
     public class UserInfoViewModel : INotifyPropertyChanged
     {

@@ -1,4 +1,4 @@
-﻿namespace ToDoList
+﻿namespace QuickList
 {
     public partial class AppShell : Shell
     {

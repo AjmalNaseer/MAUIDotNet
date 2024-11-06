@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using ToDoList.Models;
-using ToDoList.Services;
-using ToDoList.Views;
+using QuickList.Models;
+using QuickList.Services;
+using QuickList.Views;
 
-namespace ToDoList.ViewModels
+namespace QuickList.ViewModels
 {
     public class AddTaskViewModel : BaseViewModel
     {

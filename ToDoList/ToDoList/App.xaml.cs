@@ -1,6 +1,6 @@
-﻿using ToDoList.Services;
+﻿using QuickList.Services;
 
-namespace ToDoList
+namespace QuickList
 {
     public partial class App : Application
     {

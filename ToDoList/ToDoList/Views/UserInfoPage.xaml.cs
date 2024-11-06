@@ -1,6 +1,6 @@
-using ToDoList.ViewModels;
+using QuickList.ViewModels;
 
-namespace ToDoList.Views;
+namespace QuickList.Views;
 
 public partial class UserInfoPage : ContentPage
 {

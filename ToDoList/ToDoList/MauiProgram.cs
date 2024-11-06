@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
-using ToDoList.Services;
-using ToDoList.ViewModels;
-using ToDoList.Views;
+using QuickList.Services;
+using QuickList.ViewModels;
+using QuickList.Views;
 
-namespace ToDoList
+namespace QuickList
 {
     public static class MauiProgram
     {

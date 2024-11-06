@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Input;
-using ToDoList.Services;
-using ToDoList.Views;
+using QuickList.Services;
+using QuickList.Views;
 
-namespace ToDoList.ViewModels
+namespace QuickList.ViewModels
 {
     public class LoginViewModel : INotifyPropertyChanged
     {

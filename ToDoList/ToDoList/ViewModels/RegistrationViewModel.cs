@@ -1,10 +1,10 @@
 ﻿using System.Windows.Input;
-using ToDoList.Models;
+using QuickList.Models;
 using Microsoft.Maui.Controls;
-using ToDoList.Services;
-using ToDoList.Views;
+using QuickList.Services;
+using QuickList.Views;
 
-namespace ToDoList.ViewModels
+namespace QuickList.ViewModels
 {
     public class RegistrationViewModel
     {

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Shell
-    x:Class="ToDoList.AppShell"
+    x:Class="QuickList.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:ToDoList.Views"
-    Title="ToDoList"
+    xmlns:local="clr-namespace:QuickList.Views"
+    Title="QuickList"
     Shell.FlyoutBehavior="Flyout">
 
     <ShellContent

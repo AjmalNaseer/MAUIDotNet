@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ToDoList.ViewModels
+namespace QuickList.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {

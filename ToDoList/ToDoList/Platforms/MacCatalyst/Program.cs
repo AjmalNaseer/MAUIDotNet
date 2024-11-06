@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace ToDoList
+namespace QuickList
 {
     public class Program
     {

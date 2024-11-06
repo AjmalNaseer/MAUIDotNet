@@ -1,7 +1,7 @@
-using ToDoList.Models;
-using ToDoList.ViewModels;
+using QuickList.Models;
+using QuickList.ViewModels;
 
-namespace ToDoList.Views;
+namespace QuickList.Views;
 
 public partial class AddTaskPage : ContentPage
 {

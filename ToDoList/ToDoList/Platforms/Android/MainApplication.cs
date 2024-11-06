@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
 
-namespace ToDoList
+namespace QuickList
 {
     [Application]
     public class MainApplication : MauiApplication

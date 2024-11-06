@@ -1,7 +1,7 @@
 ﻿using SQLite;
-using ToDoList.Models;
+using QuickList.Models;
 
-namespace ToDoList.Services
+namespace QuickList.Services
 {
     public class DBService
     {
@@ -36,7 +36,7 @@ namespace ToDoList.Services
         // Constructor
         private DBService()
         {
-            var dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ToDoList.db3");
+            var dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "QuickList.db3");
             _database = new SQLiteAsyncConnection(dbPath);
         }
 
